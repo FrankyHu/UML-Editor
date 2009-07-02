@@ -19,9 +19,9 @@ public class Controller {
 	public static SelectMode selectMode;
 	public static ClassMode createClassMode;
 	public static UseCaseMode createUseCaseMode;
-	public static AssociationLineMode createALineMode;
-	public static CompositionLineMode createCLineMode;
-	public static GeneralizationLineMode createGLineMode;
+	public static AssociationLineMode createAssociationLineMode;
+	public static CompositionLineMode createCompositionLineMode;
+	public static GeneralizationLineMode createGeneralizationLineMode;
 	public static Vector graphicArray = new Vector();
 	public static int IDcount = 0;
 
@@ -33,9 +33,9 @@ public class Controller {
 	    this.selectMode = new SelectMode();
 	    this.createClassMode = new ClassMode();
 	    this.createUseCaseMode = new UseCaseMode();
-	    this.createALineMode = new AssociationLineMode();
-	    this.createCLineMode = new CompositionLineMode();
-	    this.createGLineMode = new GeneralizationLineMode();
+	    this.createAssociationLineMode = new AssociationLineMode();
+	    this.createCompositionLineMode = new CompositionLineMode();
+	    this.createGeneralizationLineMode = new GeneralizationLineMode();
 	    
 	    toolBar.selectButton.actionPerformed(null); // Make select mode as default
 	    

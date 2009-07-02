@@ -44,19 +44,19 @@ public class SelectMode extends Mode {
 	    	Controller.graphicArray.remove(region);
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("Select mode，mouse Released!\n");
+	    System.out.print("Select mode, mouse Released!\n");
 	}
 
 	public void mouseEntered(MouseEvent e) {
-		System.out.print("Select mode，mouse Entered!\n");
+		System.out.print("Select mode, mouse Entered!\n");
 	}
 	
 	public void mouseExited(MouseEvent e) {
-	    System.out.print("Select mode，mouse Exited!\n");
+	    System.out.print("Select mode, mouse Exited!\n");
 	}
 	
 	public void mouseMoved(MouseEvent e) {
-		System.out.print("Select mode，mouse Moved!\n");
+		System.out.print("Select mode, mouse Moved!\n");
 	}
 	
 	public void mouseDragged(MouseEvent e) {
@@ -82,7 +82,7 @@ public class SelectMode extends Mode {
 	    	Controller.graphicArray.add(region);//把region加到figurearray中，在mouserelease時須移除
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("Select mode下，mouse Dragged!\n");
+	    System.out.print("Select mode, mouse Dragged!\n");
 	}
 
 	public void selectOne() {

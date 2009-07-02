@@ -20,7 +20,7 @@ public class GeneralizationButton extends JButton implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 	    System.out.println("GeneralizationButton Pressed");
-	    Controller.currentMode = Controller.createGLineMode;
+	    Controller.currentMode = Controller.createGeneralizationLineMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/generalization_b.gif"));
 	}

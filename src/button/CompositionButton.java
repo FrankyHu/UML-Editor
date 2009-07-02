@@ -20,7 +20,7 @@ public class CompositionButton extends JButton implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 	    System.out.println("CompositionButton Pressed");
-	    Controller.currentMode = Controller.createCLineMode;
+	    Controller.currentMode = Controller.createCompositionLineMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/composition_b.gif"));
 	}

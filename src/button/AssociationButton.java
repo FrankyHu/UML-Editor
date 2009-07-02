@@ -20,7 +20,7 @@ public class AssociationButton extends JButton implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 	    System.out.println("AssociationButton Pressed");
-	    Controller.currentMode = Controller.createALineMode;
+	    Controller.currentMode = Controller.createAssociationLineMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/association_b.gif"));
 	}

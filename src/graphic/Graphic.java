@@ -18,7 +18,7 @@ abstract public class Graphic {
 	
 	}
 
-	public boolean isSelected(MouseEvent e, int O_width, int O_height) {
+	public boolean isSelected(MouseEvent e, int objectWidth, int objectHeight) {
 		return false;
 	}
 

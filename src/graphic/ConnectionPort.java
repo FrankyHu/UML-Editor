@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class ConnectionPort {
+public class ConnectionPort extends Graphic {
 	public int x;
 	public int y;
 	int width = 10;
@@ -27,18 +27,18 @@ public class ConnectionPort {
 	}
 
 
-	public boolean isSelected(MouseEvent e,int O_width, int O_height) {
+	public boolean isSelected(MouseEvent e,int objectWidth, int objectHeight) {
 		int NowPosX = e.getX();
 		int NowPosY = e.getY();
-		System.out.println("width = "+O_width);
-		System.out.println("height = "+O_height);
+		System.out.println("width = "+objectWidth);
+		System.out.println("height = "+objectHeight);
 
 		if ((NowPosX <= x + width /*-1*/) && (NowPosX >= x) && (NowPosY <= y + height /*-1*/) && (NowPosY >= y)){
 			System.out.println("result = true");
 			return true;
 		}
 		else if (((NowPosX < x) && (NowPosY <= y + height /*-1*/)) || ((NowPosY < y) && (NowPosX <= x + width/*-1*/))) {
-			if ((NowPosX + O_width >= x) && (NowPosY+ O_height >= y)){
+			if ((NowPosX + objectWidth >= x) && (NowPosY+ objectHeight >= y)){
 				System.out.println("result = true");
 				return true;
 			}

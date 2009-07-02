@@ -57,7 +57,7 @@ abstract public class BaseObject extends Graphic {
 			}
 		}
 		else {
-			if (NowPosY - position.y < height / 2){
+			if (NowPosY - position.y < height / 2) {
 				if (position.x + width - NowPosX > NowPosY - position.y) {
 			           fport = portList[1];
 				}
@@ -77,7 +77,7 @@ abstract public class BaseObject extends Graphic {
 		return fport;
 	}
 
-	public void attachPort(){
+	public void attachPort() {
 		portList[1].x = position.x + (width / 2) - (portList[1].width / 2);
 		portList[1].y = position.y - (portList[1].height / 2);
 		portList[2].x = position.x + width - (portList[2].width / 2);
@@ -88,7 +88,7 @@ abstract public class BaseObject extends Graphic {
 		portList[4].y = position.y + (height / 2) - (portList[4].height / 2);
 	}
 
-	public void setPosition(int distx, int disty){
+	public void setPosition(int distx, int disty) {
 		position.x = position.x + distx;
 		position.y = position.y + disty;
 		attachPort();

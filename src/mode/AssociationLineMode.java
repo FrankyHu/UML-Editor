@@ -13,7 +13,7 @@ public class AssociationLineMode extends BaseLineMode{
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		Controller.graphicArray.remove(templine); //把templine清除
+		Controller.graphicArray.remove(templine); // Remove templine
 	    ende = e;
 	    endfigure = getTargetFigure(ende);
 	    if ((endfigure != null) && (startpoint != null)) {
