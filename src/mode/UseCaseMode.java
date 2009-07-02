@@ -12,7 +12,7 @@ public class UseCaseMode extends ObjectMode {
 
 	public void mouseClicked(MouseEvent e) {
 		Controller.getInstance().IDcount++;
-		Controller.addGraphic(new UseCase(Controller.getInstance().IDcount,e), e);
+		Controller.addGraphic(new UseCase(Controller.getInstance().IDcount, e), e);
 		Controller.mainFrame.repaint();
 	}
 

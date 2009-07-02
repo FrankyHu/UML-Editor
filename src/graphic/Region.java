@@ -2,23 +2,23 @@ package graphic;
 
 import java.awt.*;
 
-public class Region extends BaseObject{
+public class Region extends BasicObject{
 
 
 	public Region(int x, int y) {
-		this.position = new Point();
-		this.position.x = x;
-		this.position.y = y;
+		this.graphicPoint = new Point();
+		this.graphicPoint.x = x;
+		this.graphicPoint.y = y;
 		this.width = 0;
 		this.height = 0;
-		this.isSelected = false;
+		this.isHighlighted = false;
 	}
 
 	public void draw(Graphics g) {
 		if ((width != 0) || (height != 0)) {
 			g.setColor(Color.orange);
-			g.drawRect(position.x, position.y, width, height);
-			g.drawString("Select Region", position.x, position.y);
+			g.drawRect(graphicPoint.x, graphicPoint.y, width, height);
+			g.drawString("Select Region", graphicPoint.x, graphicPoint.y);
 		}
 	}
   

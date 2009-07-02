@@ -48,13 +48,13 @@ public class MoreMenu extends JMenu implements ActionListener{
 	    boolean flag = false;
 	    CompositeObject group = null;
 	    for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-	      if (((Graphic) Controller.getInstance().graphicArray.get(i)).isSelected == true) { //if graphic select = 1
+	      if (((Graphic) Controller.getInstance().graphicArray.get(i)).isHighlighted == true) { //if graphic select = 1
 	    	  if (flag == false) {
 	    		  group = new CompositeObject();
 	        }
 	        flag = true;
-	        group.AddBaseObject(((Graphic) Controller.getInstance().graphicArray.get(i)));
-	        System.out.println("figure " +( (Graphic) Controller.getInstance().graphicArray.get(i)).graphicID +"Has been removed");
+	        group.addBasicObject(((Graphic) Controller.getInstance().graphicArray.get(i)));
+	        System.out.println("graphic " +( (Graphic) Controller.getInstance().graphicArray.get(i)).graphicID +"Has been removed");
 	        Controller.getInstance().graphicArray.remove((Graphic) Controller.getInstance().graphicArray.get(i));
 	        i--;
 	      }
@@ -70,7 +70,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 	public void ungroup() {
 		Vector ungrouplist = new Vector();//用來計算要被ungroup的個數及暫存物件
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if ((Controller.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") && (((CompositeObject)Controller.getInstance().graphicArray.get(i)).isSelected == true)) {
+			if ((Controller.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") && (((CompositeObject)Controller.getInstance().graphicArray.get(i)).isHighlighted == true)) {
 				ungrouplist.add(Controller.getInstance().graphicArray.get(i));
 			}
 		}
@@ -79,7 +79,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 			for (int j = 0; j < ((CompositeObject) ungrouplist.get(0)).groupArray.size(); j++) {
 				System.out.print("元件編號 : " + j);
 				System.out.println(" 型別 = " + ((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).getClass().getName());
-				((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).isSelected = false;
+				((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).isHighlighted = false;
 				Controller.getInstance().graphicArray.add( ( (CompositeObject) ungrouplist.get(0)).groupArray.get(j));
 			}
 			Controller.getInstance().graphicArray.remove( ( (CompositeObject) ungrouplist.get(0)));
@@ -91,8 +91,8 @@ public class MoreMenu extends JMenu implements ActionListener{
 
 	void rename() {
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if ( ( (Graphic) Controller.getInstance().graphicArray.get(i)).isSelected == true) {
-				String name = JOptionPane.showInputDialog("請輸入名稱");
+			if (((Graphic) Controller.getInstance().graphicArray.get(i)).isHighlighted == true) {
+				String name = JOptionPane.showInputDialog("Please input name:");
 				if (name != null) {
 			          ((Graphic) Controller.getInstance().graphicArray.get(i)).graphicName = name;
 				}
@@ -105,7 +105,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 		Graphic tempfigure = null;
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
 			tempfigure = ( (Graphic) Controller.getInstance().graphicArray.get(i));
-			if (tempfigure.isSelected == true) {
+			if (tempfigure.isHighlighted == true) {
 				removeFigure(tempfigure);
 				i--;
 			}

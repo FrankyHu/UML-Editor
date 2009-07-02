@@ -3,7 +3,7 @@ package graphic;
 import java.awt.*;
 import java.awt.event.*;
 
-public class UseCase extends BaseObject {
+public class UseCase extends BasicObject {
 	public UseCase() {
 		
 	}
@@ -15,15 +15,15 @@ public class UseCase extends BaseObject {
 	    
 	    graphicID = gID;
 	    graphicName = "Use Case " + gID;
-	    position = new Point();
-	    position.x = e.getX();
-	    position.y = e.getY();
+	    graphicPoint = new Point();
+	    graphicPoint.x = e.getX();
+	    graphicPoint.y = e.getY();
 
 	    attachPort();
 	  }
 
 	public void draw(Graphics g) {
-		if (isSelected == true) {
+		if (isHighlighted == true) {
 			this.draw(g, Color.yellow);
 			for (int i = 1; i <= PortNum; i++) {
 				this.portList[i].draw(g);
@@ -36,10 +36,10 @@ public class UseCase extends BaseObject {
 
 	public void draw(Graphics g, Color color) {
 		g.setColor(color);
-	    g.fillOval(position.x, position.y, width, height);
+	    g.fillOval(graphicPoint.x, graphicPoint.y, width, height);
 	    g.setColor(Color.black);
-	    g.drawOval(position.x, position.y, width, height);
-	    g.drawString(graphicName, position.x + width / 20, position.y + height / 2);
+	    g.drawOval(graphicPoint.x, graphicPoint.y, width, height);
+	    g.drawString(graphicName, graphicPoint.x + width / 20, graphicPoint.y + height / 2);
 	}
 
 }

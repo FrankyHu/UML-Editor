@@ -8,6 +8,9 @@ import mode.*;
 import graphic.*;
 
 public class Controller {
+	public Vector graphicArray = new Vector();
+	public int IDcount = 0;
+	
 	private static Controller _instance = null;
 	
 	public static MainFrame mainFrame;
@@ -17,25 +20,23 @@ public class Controller {
 
 	public static Mode currentMode;
 	public static SelectMode selectMode;
-	public static ClassMode createClassMode;
-	public static UseCaseMode createUseCaseMode;
-	public static AssociationLineMode createAssociationLineMode;
-	public static CompositionLineMode createCompositionLineMode;
-	public static GeneralizationLineMode createGeneralizationLineMode;
-	public Vector graphicArray = new Vector();
-	public int IDcount = 0;
+	public static ClassMode classMode;
+	public static UseCaseMode caseMode;
+	public static AssociationLineMode associationLineMode;
+	public static CompositionLineMode compositionLineMode;
+	public static GeneralizationLineMode generalizationLineMode;
 
 	private Controller() {
-		this.mainFrame = new MainFrame();
-	    this.toolBar = new ToolBar();
-	    this.canvas = new Canvas();
-	    this.menu = new MenuBar();
-	    this.selectMode = new SelectMode();
-	    this.createClassMode = new ClassMode();
-	    this.createUseCaseMode = new UseCaseMode();
-	    this.createAssociationLineMode = new AssociationLineMode();
-	    this.createCompositionLineMode = new CompositionLineMode();
-	    this.createGeneralizationLineMode = new GeneralizationLineMode();
+		mainFrame = new MainFrame();
+	    toolBar = new ToolBar();
+	    canvas = new Canvas();
+	    menu = new MenuBar();
+	    selectMode = new SelectMode();
+	    classMode = new ClassMode();
+	    caseMode = new UseCaseMode();
+	    associationLineMode = new AssociationLineMode();
+	    compositionLineMode = new CompositionLineMode();
+	    generalizationLineMode = new GeneralizationLineMode();
 	    
 	    toolBar.selectButton.actionPerformed(null); // Make select mode as default
 	    

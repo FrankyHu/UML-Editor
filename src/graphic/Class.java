@@ -3,7 +3,7 @@ package graphic;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Class extends BaseObject{
+public class Class extends BasicObject{
 
 	public Class(int gID, MouseEvent e) {
 		// Set class width and height
@@ -12,16 +12,16 @@ public class Class extends BaseObject{
 		
 		graphicID = gID;
 		graphicName  = "Class " + gID;
-		position = new Point();
-		position.x = e.getX();
-		position.y = e.getY();
+		graphicPoint = new Point();
+		graphicPoint.x = e.getX();
+		graphicPoint.y = e.getY();
 
 		attachPort();
 	}
 
 	public void draw(Graphics g){
 
-		if (isSelected == true){
+		if (isHighlighted == true){
 			this.draw(g,Color.yellow);
 			for (int i = 1; i <= PortNum; i++) {
 				this.portList[i].draw(g);
@@ -34,12 +34,12 @@ public class Class extends BaseObject{
 
 	public void draw(Graphics g, Color color){
 		g.setColor(color);
-	    g.fillRect(position.x, position.y, width, height);
+	    g.fillRect(graphicPoint.x, graphicPoint.y, width, height);
 	    g.setColor(Color.black);
-	    g.drawRect(position.x, position.y, width, height);
-	    g.drawString(graphicName, position.x + width / 10, position.y + height / 5);
-	    g.drawLine(position.x, position.y + height / 3, position.x + width, position.y + height / 3);
-	    g.drawLine(position.x, position.y + (height / 3) * 2, position.x + width, position.y + (height / 3) * 2);
+	    g.drawRect(graphicPoint.x, graphicPoint.y, width, height);
+	    g.drawString(graphicName, graphicPoint.x + width / 10, graphicPoint.y + height / 5);
+	    g.drawLine(graphicPoint.x, graphicPoint.y + height / 3, graphicPoint.x + width, graphicPoint.y + height / 3);
+	    g.drawLine(graphicPoint.x, graphicPoint.y + (height / 3) * 2, graphicPoint.x + width, graphicPoint.y + (height / 3) * 2);
 	}
 
 }

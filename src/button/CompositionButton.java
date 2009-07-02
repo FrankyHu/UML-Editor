@@ -19,7 +19,7 @@ public class CompositionButton extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    Controller.currentMode = Controller.createCompositionLineMode;
+	    Controller.currentMode = Controller.compositionLineMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/composition_down.jpg"));
 	}

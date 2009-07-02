@@ -31,8 +31,8 @@ public class SelectMode extends Mode {
 	    	region = new Region(e.getX(), e.getY());
 	    	selectOne(); // Remove all selected object
 	    }
-	    else if(targetGraphic.isSelected == true) { // If targetGraphic is selected, then find which port inside
-	    	targetPortNum = whichPortInside(targetGraphic, startSelect);
+	    else if(targetGraphic.isHighlighted == true) { // If targetGraphic is selected, then find which port inside
+	    	targetPortNum = selectedPort(targetGraphic, startSelect);
 	    }
 	    Controller.mainFrame.repaint();
 	}
@@ -54,16 +54,16 @@ public class SelectMode extends Mode {
 	    		distX =  endSelect.getX() - startSelect.getX();
 	    		distY =  endSelect.getY() - startSelect.getY();
 	    		startSelect = endSelect;
-	    		((BaseObject)targetGraphic).setPosition(distX, distY);
+	    		((BasicObject)targetGraphic).setPosition(distX, distY);
 	    	}
 	    	else if (targetGraphic.getClass().getName() != "graphic.CompositeObject") {
-	    		modifySize (((BaseObject)targetGraphic), targetPortNum, endSelect);
+	    		modifySize (((BasicObject)targetGraphic), targetPortNum, endSelect);
 	    	}
 	    }
 	    else if (targetGraphic == null) {
 	    	// Didn't press any object, draw select region
-	    	region.position.x = Math.min(endSelect.getX(), startSelect.getX());
-	    	region.position.y = Math.min(endSelect.getY(), startSelect.getY());
+	    	region.graphicPoint.x = Math.min(endSelect.getX(), startSelect.getX());
+	    	region.graphicPoint.y = Math.min(endSelect.getY(), startSelect.getY());
 	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
 	    	region.height = Math.abs(endSelect.getY() - startSelect.getY());
 	    	Controller.getInstance().graphicArray.remove(region); // Remove region first
@@ -81,7 +81,7 @@ public class SelectMode extends Mode {
 	    }
 		
 	    if (targetGraphic != null) {
-	    	if (targetGraphic.isSelected == true) {
+	    	if (targetGraphic.isHighlighted == true) {
 	    		targetGraphic.disableHighlight();
 	    	}
 	    	else {
@@ -94,13 +94,13 @@ public class SelectMode extends Mode {
 		Graphic tempfigure = null;
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
 			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BaseObject"){
-				tempfigure = ( (BaseObject) Controller.getInstance().graphicArray.get(i));
+				tempfigure = ( (BasicObject) Controller.getInstance().graphicArray.get(i));
 
-				if ((region.position.x <= tempfigure.position.x) && (region.position.y <= tempfigure.position.y) &&
-	             ((tempfigure.position.x + tempfigure.width) <= (region.position.x + region.width)) &&
-	             ((tempfigure.position.y + tempfigure.height) <= (region.position.y + region.height))) {
+				if ((region.graphicPoint.x <= tempfigure.graphicPoint.x) && (region.graphicPoint.y <= tempfigure.graphicPoint.y) &&
+	             ((tempfigure.graphicPoint.x + tempfigure.width) <= (region.graphicPoint.x + region.width)) &&
+	             ((tempfigure.graphicPoint.y + tempfigure.height) <= (region.graphicPoint.y + region.height))) {
 					// Graphic is in region
-					if (tempfigure.isSelected == true) {
+					if (tempfigure.isHighlighted == true) {
 						tempfigure.disableHighlight();
 					}
 					else {
@@ -111,7 +111,7 @@ public class SelectMode extends Mode {
 		}
 	}
 
-	public int whichPortInside(Graphic f,MouseEvent e){
+	public int selectedPort(Graphic f,MouseEvent e){
 		for (int i = 1; i <= 4; i++) {
 			if (f.portList[i].isSelected(e, 0, 0)) {
 				return i;
@@ -120,32 +120,32 @@ public class SelectMode extends Mode {
 	    return 0;
 	}
 
-	public void modifySize (BaseObject baseObject,int targetPortNum,MouseEvent e) {
+	public void modifySize (BasicObject baseObject,int targetPortNum,MouseEvent e) {
 		int limit = 30;
 	    switch(targetPortNum) {
 	    	case 1 : 
-	    		if (e.getY() <= baseObject.position.y + baseObject.height - limit) {
-	    			baseObject.height = (baseObject.position.y + baseObject.height) - e.getY();
-	    			baseObject.position.y = e.getY();
+	    		if (e.getY() <= baseObject.graphicPoint.y + baseObject.height - limit) {
+	    			baseObject.height = (baseObject.graphicPoint.y + baseObject.height) - e.getY();
+	    			baseObject.graphicPoint.y = e.getY();
 	    		}
 	    		break;
 	    		
 	    	case 2 : 
-	    		if (e.getX() >= baseObject.position.x + limit) {
-	    			baseObject.width = e.getX() - (baseObject.position.x);
+	    		if (e.getX() >= baseObject.graphicPoint.x + limit) {
+	    			baseObject.width = e.getX() - (baseObject.graphicPoint.x);
 	    		}
 	    		break;
 	    	
 	    	case 3 : 
-	    		if (e.getY() >= baseObject.position.y + limit) {
-	    			baseObject.height = e.getY() - (baseObject.position.y);
+	    		if (e.getY() >= baseObject.graphicPoint.y + limit) {
+	    			baseObject.height = e.getY() - (baseObject.graphicPoint.y);
 	    		}
 	    		break;
 	    	
 	    	case 4 : 
-	    		if (e.getX() <= baseObject.position.x + baseObject.width - limit) {
-	    			baseObject.width = (baseObject.position.x+baseObject.width) - e.getX();
-	    			baseObject.position.x = e.getX();
+	    		if (e.getX() <= baseObject.graphicPoint.x + baseObject.width - limit) {
+	    			baseObject.width = (baseObject.graphicPoint.x+baseObject.width) - e.getX();
+	    			baseObject.graphicPoint.x = e.getX();
 	    		}
 	    		break;
 	    	default:
