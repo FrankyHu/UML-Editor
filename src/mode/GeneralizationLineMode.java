@@ -5,7 +5,7 @@ import java.awt.event.*;
 import controller.*;
 import graphic.*;
 
-public class GeneralizationLineMode extends BaseLineMode{
+public class GeneralizationLineMode extends LineMode{
 
 	public GeneralizationLineMode() {
 		
@@ -21,7 +21,6 @@ public class GeneralizationLineMode extends BaseLineMode{
 	    	Controller.addGraphic(new GeneralizationLine(Controller.getInstance().IDcount, startpoint,endpoint), e);
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("create GLine mode, mouse Released!\n");
 	}
 
 	public void mouseDragged(MouseEvent e){
@@ -35,7 +34,6 @@ public class GeneralizationLineMode extends BaseLineMode{
 	    	Controller.addGraphic(templine,e);//加入templine使拉線的過程中可以看見，在mouserelease時移除
 	    	Controller.mainFrame.repaint();
 	    }
-	    System.out.print("create GLine mode, mouse Dragged!\n");
 	}
 
 }

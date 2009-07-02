@@ -3,8 +3,8 @@ package mode;
 import java.awt.event.*;
 
 
-public class BaseObjectMode extends Mode{
-	public BaseObjectMode() {
+public class ObjectMode extends Mode{
+	public ObjectMode() {
 
 	}
 

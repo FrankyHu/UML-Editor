@@ -33,11 +33,11 @@ public class ToolBar extends JPanel{
 	}
 
 	public void initializeIcon() {
-		this.selectButton.setIcon(new ImageIcon("./image/select.gif"));
-		this.associationButton.setIcon(new ImageIcon("./image/association.gif"));
-		this.generalizationButton.setIcon(new ImageIcon("./image/generalization.gif"));
-		this.compositionButton.setIcon(new ImageIcon("./image/composition.gif"));
-		this.classButton.setIcon(new ImageIcon("./image/Class.gif"));
-		this.useCaseButton.setIcon(new ImageIcon("./image/UseCase.gif"));
+		this.selectButton.setIcon(new ImageIcon("./image/select.jpg"));
+		this.associationButton.setIcon(new ImageIcon("./image/association.jpg"));
+		this.generalizationButton.setIcon(new ImageIcon("./image/generalization.jpg"));
+		this.compositionButton.setIcon(new ImageIcon("./image/composition.jpg"));
+		this.classButton.setIcon(new ImageIcon("./image/Class.jpg"));
+		this.useCaseButton.setIcon(new ImageIcon("./image/UseCase.jpg"));
 	}
 }

@@ -22,7 +22,7 @@ public class UseCaseButton extends JButton implements ActionListener{
 	    System.out.println("UseCaseButton Pressed");
 	    Controller.currentMode = Controller.createUseCaseMode;
 	    Controller.toolBar.initializeIcon();
-	    this.setIcon(new ImageIcon("./image/usecase_b.gif"));
+	    this.setIcon(new ImageIcon("./image/usecase_down.jpg"));
 	}
 
 }

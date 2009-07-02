@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 import graphic.*;
 
-public class BaseLineMode extends Mode{
+public class LineMode extends Mode{
 	MouseEvent starte;
 	MouseEvent ende;
 	Graphic startfigure = null;
@@ -12,12 +12,8 @@ public class BaseLineMode extends Mode{
 	ConnectionPort startpoint = null;
 	ConnectionPort endpoint = null;
 	Line templine = null;
-	public BaseLineMode() {
+	public LineMode() {
 
-	}
-
-	public void mouseClicked(MouseEvent e) {
-		System.out.print("Line mode, mouse Clicked!\n");
 	}
 	
 	public void mousePressed(MouseEvent e){
@@ -27,7 +23,6 @@ public class BaseLineMode extends Mode{
 	    if (startfigure != null) {
 	    	startpoint = startfigure.getPort(starte);
 	    }
-	    System.out.print("Line mode, mouse Pressed!\n");
 	}
 	
 	// Unused method
@@ -51,5 +46,8 @@ public class BaseLineMode extends Mode{
 
 	}
 
+	public void mouseClicked(MouseEvent e) {
+		
+	}
 }
 

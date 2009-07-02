@@ -22,7 +22,7 @@ public class ClassButton extends JButton implements ActionListener{
 	    System.out.println("ClassButton Pressed");
 	    Controller.currentMode = Controller.createClassMode;
 	    Controller.toolBar.initializeIcon();
-	    this.setIcon(new ImageIcon("./image/class_b.gif"));
+	    this.setIcon(new ImageIcon("./image/class_down.jpg"));
 	}
 	  
 }

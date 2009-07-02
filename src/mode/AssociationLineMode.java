@@ -6,7 +6,7 @@ import controller.*;
 import graphic.*;
 
 
-public class AssociationLineMode extends BaseLineMode{
+public class AssociationLineMode extends LineMode{
 
 	public AssociationLineMode() {
 		
@@ -22,7 +22,6 @@ public class AssociationLineMode extends BaseLineMode{
 	    	Controller.addGraphic(new AssociationLine(Controller.getInstance().IDcount, startpoint,endpoint), ende);
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("create ALine mode下，mouse Released!\n");
 	}
 
 	public void mouseDragged(MouseEvent e){
@@ -36,6 +35,5 @@ public class AssociationLineMode extends BaseLineMode{
 	    	Controller.addGraphic(templine,e);//加入templine使拉線的過程中可以看見，在mouserelease時移除
 	    	Controller.mainFrame.repaint();
 	    }
-	    System.out.print("create ALine mode下，mouse Dragged!\n");
 	}
 }

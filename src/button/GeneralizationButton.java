@@ -22,7 +22,7 @@ public class GeneralizationButton extends JButton implements ActionListener{
 	    System.out.println("GeneralizationButton Pressed");
 	    Controller.currentMode = Controller.createGeneralizationLineMode;
 	    Controller.toolBar.initializeIcon();
-	    this.setIcon(new ImageIcon("./image/generalization_b.gif"));
+	    this.setIcon(new ImageIcon("./image/generalization_down.jpg"));
 	}
 	  
 }

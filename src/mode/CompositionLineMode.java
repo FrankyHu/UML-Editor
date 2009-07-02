@@ -5,7 +5,7 @@ import java.awt.event.*;
 import controller.*;
 import graphic.*;
 
-public class CompositionLineMode extends BaseLineMode{
+public class CompositionLineMode extends LineMode{
 
 	public CompositionLineMode() {
 		  
@@ -21,7 +21,6 @@ public class CompositionLineMode extends BaseLineMode{
 	    	Controller.addGraphic(new CompositionLine(Controller.getInstance().IDcount, startpoint, endpoint),e);
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("create CLine mode, mouse Released!\n");
 	}
 
 	public void mouseDragged(MouseEvent e){
@@ -35,6 +34,5 @@ public class CompositionLineMode extends BaseLineMode{
 	    	Controller.addGraphic(templine, e);//加入templine使拉線的過程中可以看見，在mouserelease時移除
 	    	Controller.mainFrame.repaint();
 	    }
-	    System.out.print("create CLine mode, mouse Dragged!\n");
 	}
 }

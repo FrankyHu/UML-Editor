@@ -31,46 +31,45 @@ public class SelectMode extends Mode {
 	    	region = new Region(e.getX(), e.getY());
 	    	selectOne(); // Remove all selected object
 	    }
-	    else if(targetGraphic.isSelected == true) { //如果是選到已被select的figure的port
+	    else if(targetGraphic.isSelected == true) { // If targetGraphic is selected, then find which port inside
 	    	targetPortNum = whichPortInside(targetGraphic, startSelect);
 	    }
 	    Controller.mainFrame.repaint();
 	}
 
 	public void mouseReleased(MouseEvent e) {
-	    if (targetGraphic == null) { //如果是null表已畫出region
+	    if (targetGraphic == null) { // If null, then region is draw
 	    	endSelect = e;
 	    	selectRegion();
 	    	Controller.getInstance().graphicArray.remove(region);
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("Select mode, mouse Released!\n");
 	}
 	
 	public void mouseDragged(MouseEvent e) {
 		endSelect = e;
-	    if (targetGraphic != null) {//表示有選到物件
-	    	if (targetPortNum == 0) {//0表沒有按到任何的port
+	    if (targetGraphic != null) {// If not null, then object is selected
+	    	if (targetPortNum == 0) {
+	    		// Didn't press any port
 	    		distX =  endSelect.getX() - startSelect.getX();
 	    		distY =  endSelect.getY() - startSelect.getY();
 	    		startSelect = endSelect;
-	    		((BaseObject)targetGraphic).setPosition(distX,distY);
+	    		((BaseObject)targetGraphic).setPosition(distX, distY);
 	    	}
-	    	// graphic.Group
-	    	else if (targetGraphic.getClass().getName() != "UMLeditor.Group") {
-	    		modifySize (((BaseObject)targetGraphic),targetPortNum,endSelect);
+	    	else if (targetGraphic.getClass().getName() != "graphic.CompositeObject") {
+	    		modifySize (((BaseObject)targetGraphic), targetPortNum, endSelect);
 	    	}
 	    }
-	    else if (targetGraphic == null) { //沒有按到物件，繪出select region
-	    	region.position.x = Math.min(endSelect.getX(),startSelect.getX());
-	    	region.position.y = Math.min(endSelect.getY(),startSelect.getY());
+	    else if (targetGraphic == null) {
+	    	// Didn't press any object, draw select region
+	    	region.position.x = Math.min(endSelect.getX(), startSelect.getX());
+	    	region.position.y = Math.min(endSelect.getY(), startSelect.getY());
 	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
 	    	region.height = Math.abs(endSelect.getY() - startSelect.getY());
-	    	Controller.getInstance().graphicArray.remove(region);//不管有沒有region先移掉
-	    	Controller.getInstance().graphicArray.add(region);//把region加到figurearray中，在mouserelease時須移除
+	    	Controller.getInstance().graphicArray.remove(region); // Remove region first
+	    	Controller.getInstance().graphicArray.add(region); // Add region to graphicArray, and remove it when mouse release
 	    }
 	    Controller.mainFrame.repaint();
-	    System.out.print("Select mode, mouse Dragged!\n");
 	}
 
 	public void selectOne() {
@@ -96,10 +95,11 @@ public class SelectMode extends Mode {
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
 			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BaseObject"){
 				tempfigure = ( (BaseObject) Controller.getInstance().graphicArray.get(i));
-				//判斷figure是否在region內
+
 				if ((region.position.x <= tempfigure.position.x) && (region.position.y <= tempfigure.position.y) &&
 	             ((tempfigure.position.x + tempfigure.width) <= (region.position.x + region.width)) &&
 	             ((tempfigure.position.y + tempfigure.height) <= (region.position.y + region.height))) {
+					// Graphic is in region
 					if (tempfigure.isSelected == true) {
 						tempfigure.disableHighlight();
 					}
