@@ -2,10 +2,10 @@ package graphic;
 
 import java.awt.*;
 
-public class Region extends BasicObject{
+public class Range extends BasicObject{
 
 
-	public Region(int x, int y) {
+	public Range(int x, int y) {
 		this.graphicPoint = new Point();
 		this.graphicPoint.x = x;
 		this.graphicPoint.y = y;
@@ -18,7 +18,7 @@ public class Region extends BasicObject{
 		if ((width != 0) || (height != 0)) {
 			g.setColor(Color.orange);
 			g.drawRect(graphicPoint.x, graphicPoint.y, width, height);
-			g.drawString("Select Region", graphicPoint.x, graphicPoint.y);
+			g.drawString("Select Range", graphicPoint.x, graphicPoint.y - 5);
 		}
 	}
   

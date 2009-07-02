@@ -129,7 +129,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 
 	public void DeleteOrphanLine(Graphic f) {
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if ( (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.Line") && ((((Line) Controller.getInstance().graphicArray.get(i)).startpoint.port_fig == f) || (((Line) Controller.getInstance().graphicArray.get(i)).endpoint.port_fig == f))){
+			if ( (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.Line") && ((((Line) Controller.getInstance().graphicArray.get(i)).startpoint.connectedGraphic == f) || (((Line) Controller.getInstance().graphicArray.get(i)).endpoint.connectedGraphic == f))){
 				Controller.getInstance().graphicArray.remove(Controller.getInstance().graphicArray.get(i));
 				i--;
 				Controller.mainFrame.repaint();

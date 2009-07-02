@@ -25,7 +25,7 @@ public class AssociationLineMode extends LineMode{
 	public void mouseDragged(MouseEvent e) {
 		endPoint = e;
 	    if (startPort != null){
-	    	endPort = new ConnectionPort(startGrapic);// For tempLine use only
+	    	endPort = new ConnectionPort(startGrapic); // For tempLine use only
 	    	endPort.x = endPoint.getX();
 	    	endPort.y = endPoint.getY();
 	    	Controller.getInstance().graphicArray.remove(tempLine);// Remove the line when last mouse drag create

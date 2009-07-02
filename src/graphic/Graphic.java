@@ -38,23 +38,6 @@ abstract public class Graphic {
 		
 	}
 	
-	public void attachPort() {
-		portList[1].x = graphicPoint.x + (width / 2) - (portList[1].width / 2);
-		portList[1].y = graphicPoint.y - (portList[1].height / 2);
-		
-		portList[2].x = graphicPoint.x + width - (portList[2].width / 2);
-		portList[2].y = graphicPoint.y + (height / 2) - (portList[2].height / 2);
-		
-		portList[3].x = graphicPoint.x + (width / 2) - (portList[3].width / 2);
-		portList[3].y = graphicPoint.y + height - (portList[3].height / 2);
-		
-		portList[4].x = graphicPoint.x - (portList[4].width / 2);
-		portList[4].y = graphicPoint.y + (height / 2) - (portList[4].height / 2);
-	}
 
-	public void setPosition(int distx, int disty) {
-		graphicPoint.x = graphicPoint.x + distx;
-		graphicPoint.y = graphicPoint.y + disty;
-		attachPort();
-	}
+
 }

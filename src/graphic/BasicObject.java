@@ -40,37 +40,47 @@ abstract public class BasicObject extends Graphic {
 	public ConnectionPort getPort(MouseEvent e) {
 		ConnectionPort port;
 		if (currentX - graphicPoint.x < width / 2) {
+			// Left part
 			if (currentY - graphicPoint.y < height / 2) {
 				if (currentX - graphicPoint.x > currentY - graphicPoint.y) {
+					// Up
 					port = portList[1];
 				}
 				else {
+					// Left
 					port = portList[4];
 				}
 			}
 			else {
 				if (currentX - graphicPoint.x > graphicPoint.y + height - currentY) {
+					// Down
 					port = portList[3];
 				}
 				else {
+					// Left
 					port = portList[4];
 				}
 			}
 		}
 		else {
+			// Right part
 			if (currentY - graphicPoint.y < height / 2) {
 				if (graphicPoint.x + width - currentX > currentY - graphicPoint.y) {
-			           port = portList[1];
+					// Up
+					port = portList[1];
 				}
 				else {
+					// Right
 					port = portList[2];
 				}
 			}
 			else {
 				if (graphicPoint.x + width - currentX > graphicPoint.y + height - currentY) {
-			           port = portList[3];
+					// Down
+					port = portList[3];
 				}
 				else {
+					// Right
 					port = portList[2];
 				}
 			}
@@ -78,4 +88,24 @@ abstract public class BasicObject extends Graphic {
 		return port;
 	}
 
+	public void attachPort() {
+		portList[1].x = graphicPoint.x + (width / 2) - (portList[1].width / 2);
+		portList[1].y = graphicPoint.y - (portList[1].height / 2);
+		
+		portList[2].x = graphicPoint.x + width - (portList[2].width / 2);
+		portList[2].y = graphicPoint.y + (height / 2) - (portList[2].height / 2);
+		
+		portList[3].x = graphicPoint.x + (width / 2) - (portList[3].width / 2);
+		portList[3].y = graphicPoint.y + height - (portList[3].height / 2);
+		
+		portList[4].x = graphicPoint.x - (portList[4].width / 2);
+		portList[4].y = graphicPoint.y + (height / 2) - (portList[4].height / 2);
+	}
+
+	public void setPosition(int distanceX, int distanceY) {
+		graphicPoint.x = graphicPoint.x + distanceX;
+		graphicPoint.y = graphicPoint.y + distanceY;
+		attachPort();
+	}
+	
 }
