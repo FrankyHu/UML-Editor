@@ -7,7 +7,7 @@ import graphic.*;
 
 public class SelectMode extends Mode {
 	Region region;
-	Graphic targetFigure = null;
+	Graphic targetGraphic = null;
 	int targetPortNum = 0;
 	MouseEvent startSelect = null;
 	MouseEvent endSelect = null;
@@ -19,26 +19,26 @@ public class SelectMode extends Mode {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		targetFigure = getTargetFigure(e);
-	    selectOne(); //把選到的select
+		targetGraphic = getTargetGraphic(e);
+	    selectOne(); // Select target
 	    Controller.mainFrame.repaint();
 	}
 
 	public void mousePressed(MouseEvent e) {
-	    targetFigure = getTargetFigure(e);
+	    targetGraphic = getTargetGraphic(e);
 	    startSelect = e;
-	    if (targetFigure == null) { //如果是null就畫出select region
+	    if (targetGraphic == null) { // if null, then draw select region
 	    	region = new Region(e.getX(), e.getY());
-	    	selectOne(); //移除所有被select的物件
+	    	selectOne(); // Remove all selected object
 	    }
-	    else if(targetFigure.isSelected == true) { //如果是選到已被select的figure的port
-	    	targetPortNum = whichPortInside(targetFigure, startSelect);
+	    else if(targetGraphic.isSelected == true) { //如果是選到已被select的figure的port
+	    	targetPortNum = whichPortInside(targetGraphic, startSelect);
 	    }
 	    Controller.mainFrame.repaint();
 	}
 
 	public void mouseReleased(MouseEvent e) {
-	    if (targetFigure == null) { //如果是null表已畫出region
+	    if (targetGraphic == null) { //如果是null表已畫出region
 	    	endSelect = e;
 	    	selectRegion();
 	    	Controller.getInstance().graphicArray.remove(region);
@@ -46,34 +46,22 @@ public class SelectMode extends Mode {
 	    Controller.mainFrame.repaint();
 	    System.out.print("Select mode, mouse Released!\n");
 	}
-
-	public void mouseEntered(MouseEvent e) {
-		System.out.print("Select mode, mouse Entered!\n");
-	}
-	
-	public void mouseExited(MouseEvent e) {
-	    System.out.print("Select mode, mouse Exited!\n");
-	}
-	
-	public void mouseMoved(MouseEvent e) {
-		System.out.print("Select mode, mouse Moved!\n");
-	}
 	
 	public void mouseDragged(MouseEvent e) {
 		endSelect = e;
-	    if (targetFigure != null) {//表示有選到物件
+	    if (targetGraphic != null) {//表示有選到物件
 	    	if (targetPortNum == 0) {//0表沒有按到任何的port
 	    		distX =  endSelect.getX() - startSelect.getX();
 	    		distY =  endSelect.getY() - startSelect.getY();
 	    		startSelect = endSelect;
-	    		((BaseObject)targetFigure).setPosition(distX,distY);
+	    		((BaseObject)targetGraphic).setPosition(distX,distY);
 	    	}
 	    	// graphic.Group
-	    	else if (targetFigure.getClass().getName() != "UMLeditor.Group") {
-	    		modifySize (((BaseObject)targetFigure),targetPortNum,endSelect);
+	    	else if (targetGraphic.getClass().getName() != "UMLeditor.Group") {
+	    		modifySize (((BaseObject)targetGraphic),targetPortNum,endSelect);
 	    	}
 	    }
-	    else if (targetFigure == null) { //沒有按到物件，繪出select region
+	    else if (targetGraphic == null) { //沒有按到物件，繪出select region
 	    	region.position.x = Math.min(endSelect.getX(),startSelect.getX());
 	    	region.position.y = Math.min(endSelect.getY(),startSelect.getY());
 	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
@@ -86,17 +74,19 @@ public class SelectMode extends Mode {
 	}
 
 	public void selectOne() {
-		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {//把其他的dishighlight
-			if (((Graphic) Controller.getInstance().graphicArray.get(i)) != targetFigure) {
-				((Graphic) Controller.getInstance().graphicArray.get(i)).DisHighlight();
+		// Disable highlight for all graphics
+		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
+			if (((Graphic) Controller.getInstance().graphicArray.get(i)) != targetGraphic) {
+				((Graphic) Controller.getInstance().graphicArray.get(i)).disableHighlight();
 			}
 	    }
-	    if (targetFigure != null) {
-	    	if (targetFigure.isSelected == true) {
-	    		targetFigure.DisHighlight();
+		
+	    if (targetGraphic != null) {
+	    	if (targetGraphic.isSelected == true) {
+	    		targetGraphic.disableHighlight();
 	    	}
 	    	else {
-	    		targetFigure.Highlight();
+	    		targetGraphic.highlight();
 	    	}
 	    }
 	}
@@ -111,10 +101,10 @@ public class SelectMode extends Mode {
 	             ((tempfigure.position.x + tempfigure.width) <= (region.position.x + region.width)) &&
 	             ((tempfigure.position.y + tempfigure.height) <= (region.position.y + region.height))) {
 					if (tempfigure.isSelected == true) {
-						tempfigure.DisHighlight();
+						tempfigure.disableHighlight();
 					}
 					else {
-			            tempfigure.Highlight();
+			            tempfigure.highlight();
 					}
 				}
 			}
@@ -158,6 +148,19 @@ public class SelectMode extends Mode {
 	    	break;
 	    }
 	    baseobject.attachPort();
+	}
+	
+	// Unused method
+	public void mouseEntered(MouseEvent e) {
+	
+	}
+	
+	public void mouseExited(MouseEvent e) {
+
+	}
+	
+	public void mouseMoved(MouseEvent e) {
+
 	}
 	
 }

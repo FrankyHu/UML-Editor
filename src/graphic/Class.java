@@ -5,20 +5,16 @@ import java.awt.event.*;
 
 public class Class extends BaseObject{
 
-	int PortNum = 4;    //Set port number
-
 	public Class(int gID, MouseEvent e) {
-		width = 100;      // Set box width and height
+		// Set class width and height
+		width = 100;
 		height = 100;
+		
 		graphicID = gID;
 		graphicName  = "Class " + gID;
 		position = new Point();
 		position.x = e.getX();
 		position.y = e.getY();
-
-		for (int i = 1; i <= PortNum; i++) { // new connection port
-			portList[i] = new ConnectionPort(this);
-		}
 
 		attachPort();
 	}

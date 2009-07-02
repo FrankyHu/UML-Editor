@@ -7,20 +7,18 @@ public class UseCase extends BaseObject {
 	public UseCase() {
 		
 	}
-
-	int PortNum = 4; //port的個數
-
-	public UseCase(int F_ID, MouseEvent e) {
-		width = 100; //設定UseCase的寬跟高
+	
+	public UseCase(int gID, MouseEvent e) {
+		// Set UseCase width and height
+		width = 100;
 	    height = 70;
-	    graphicID = F_ID;
-	    graphicName = "Use Case " + F_ID;
+	    
+	    graphicID = gID;
+	    graphicName = "Use Case " + gID;
 	    position = new Point();
 	    position.x = e.getX();
 	    position.y = e.getY();
-	    for (int i = 1; i <= PortNum; i++) { //new所有的port
-	    	portList[i] = new ConnectionPort(this);
-	    }
+
 	    attachPort();
 	  }
 

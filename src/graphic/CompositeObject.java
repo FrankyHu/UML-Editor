@@ -70,16 +70,16 @@ public class CompositeObject extends BaseObject {
 		}
 	}
 
-	public void Highlight(){
+	public void highlight(){
 		for(int i =0; i<this.groupArray.size(); i++) {
-			((Graphic)this.groupArray.get(i)).Highlight();
+			((Graphic)this.groupArray.get(i)).highlight();
 		}
 		this.isSelected = true;
 	}
 
-	public void DisHighlight(){
+	public void disableHighlight(){
 		for(int i =0; i<this.groupArray.size(); i++) {
-			((Graphic)this.groupArray.get(i)).DisHighlight();
+			((Graphic)this.groupArray.get(i)).disableHighlight();
 		}
 		this.isSelected = false;
 	}

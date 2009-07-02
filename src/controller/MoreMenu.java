@@ -60,7 +60,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 	      }
 	    }
 	    if (group != null) {
-	    	group.DisHighlight();
+	    	group.disableHighlight();
 	    	Controller.getInstance().graphicArray.add(group); //把新的group加到figure的vector
 	    }
 	    System.out.println("flag == " + flag);
@@ -75,7 +75,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 			}
 		}
 		System.out.println("Srating ungroup");
-		if (ungrouplist.size() == 1){//唯一一個物件被選取
+		if (ungrouplist.size() == 1) {//唯一一個物件被選取
 			for (int j = 0; j < ((CompositeObject) ungrouplist.get(0)).groupArray.size(); j++) {
 				System.out.print("元件編號 : " + j);
 				System.out.println(" 型別 = " + ((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).getClass().getName());
@@ -101,7 +101,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 	    Controller.mainFrame.repaint();
 	}
 
-	public void delete (){  //事件的傾聽者(處理者)必須提供的method
+	public void delete () {  //事件的傾聽者(處理者)必須提供的method
 		Graphic tempfigure = null;
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
 			tempfigure = ( (Graphic) Controller.getInstance().graphicArray.get(i));
@@ -113,7 +113,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 		}
 	}
 
-	public void removeFigure(Graphic figure){
+	public void removeFigure(Graphic figure) {
 		if (figure.getClass().getName() == "graphic.CompositeObject") {
 			for (int j = 0;j < ((CompositeObject)figure).groupArray.size() ;j++){
 				if(((CompositeObject)figure).groupArray.get(j).getClass().getName() == "graphic.CompositeObject") { //如果group中還有group
@@ -127,7 +127,7 @@ public class MoreMenu extends JMenu implements ActionListener{
 	  Controller.mainFrame.repaint();
 	}
 
-	public void DeleteOrphanLine(Graphic f){
+	public void DeleteOrphanLine(Graphic f) {
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
 			if ( (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.Line") && ((((Line) Controller.getInstance().graphicArray.get(i)).startpoint.port_fig == f) || (((Line) Controller.getInstance().graphicArray.get(i)).endpoint.port_fig == f))){
 				Controller.getInstance().graphicArray.remove(Controller.getInstance().graphicArray.get(i));

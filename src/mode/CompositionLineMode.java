@@ -14,9 +14,9 @@ public class CompositionLineMode extends BaseLineMode{
 	public void mouseReleased(MouseEvent e){
 		Controller.getInstance().graphicArray.remove(templine);//把templine清除
 	    ende = e;
-	    endfigure = getTargetFigure(ende);
+	    endfigure = getTargetGraphic(ende);
 	    if ((endfigure != null) && (startpoint != null) && (endfigure != startfigure)) {
-	    	endpoint = endfigure.GetPort(ende);
+	    	endpoint = endfigure.getPort(ende);
 	    	Controller.getInstance().IDcount++;
 	    	Controller.addGraphic(new CompositionLine(Controller.getInstance().IDcount, startpoint, endpoint),e);
 	    }

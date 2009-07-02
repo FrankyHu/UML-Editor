@@ -15,9 +15,9 @@ public class AssociationLineMode extends BaseLineMode{
 	public void mouseReleased(MouseEvent e) {
 		Controller.getInstance().graphicArray.remove(templine); // Remove templine
 	    ende = e;
-	    endfigure = getTargetFigure(ende);
+	    endfigure = getTargetGraphic(ende);
 	    if ((endfigure != null) && (startpoint != null)) {
-	    	endpoint = endfigure.GetPort(ende);
+	    	endpoint = endfigure.getPort(ende);
 	    	Controller.getInstance().IDcount++;
 	    	Controller.addGraphic(new AssociationLine(Controller.getInstance().IDcount, startpoint,endpoint), ende);
 	    }

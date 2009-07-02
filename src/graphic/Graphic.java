@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 abstract public class Graphic {
-
+	int PortNum = 4;    //Set port number
 	public boolean isSelected = false;
 	public int depth = 1;
 	public int graphicID;
@@ -22,16 +22,16 @@ abstract public class Graphic {
 		return false;
 	}
 
-	public ConnectionPort GetPort(MouseEvent e) {
+	public ConnectionPort getPort(MouseEvent e) {
 		ConnectionPort temp = null;
 		return temp;
 	}
 
-	public void Highlight(){
+	public void highlight(){
 		isSelected = true;
 	}
 	
-	public void DisHighlight(){
+	public void disableHighlight(){
 		isSelected = false;
 	}
 	

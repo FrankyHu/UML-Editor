@@ -14,12 +14,12 @@ public class ConnectionPort extends Graphic {
 		port_fig = f;
 	}
 
-	public void draw(Graphics g){
+	public void draw(Graphics g) {
 		System.out.print("do draw");
 		this.draw(g,Color.green);
 	}
 
-	public void draw(Graphics g,Color color){
+	public void draw(Graphics g,Color color) {
 		g.setColor(color);
 		g.fillRect(x,y,width,height);
 		g.setColor(Color.black);

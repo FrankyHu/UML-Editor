@@ -1,8 +1,6 @@
-package controller;
+package graphic;
 
 import java.awt.*;
-
-import graphic.*;
 
 public class Region extends BaseObject{
 
@@ -18,7 +16,7 @@ public class Region extends BaseObject{
 
 	public void draw(Graphics g) {
 		if ((width != 0) || (height != 0)) {
-			g.setColor(Color.BLUE);
+			g.setColor(Color.orange);
 			g.drawRect(position.x, position.y, width, height);
 			g.drawString("Select Region", position.x, position.y);
 		}

@@ -8,7 +8,9 @@ abstract public class BaseObject extends Graphic {
 	int NowPosX,NowPosY;
 
 	public BaseObject() {
-		
+		for (int i = 1; i <= PortNum; i++) { // new connection port
+			portList[i] = new ConnectionPort(this);
+		}
 	}
 
 	public boolean isSelected(MouseEvent e,int O_width, int O_height) {
@@ -36,7 +38,7 @@ abstract public class BaseObject extends Graphic {
 		}
 	}
 
-	public ConnectionPort GetPort(MouseEvent e) {
+	public ConnectionPort getPort(MouseEvent e) {
 		ConnectionPort fport;
 		if (NowPosX - position.x < width / 2) {
 			if (NowPosY - position.y < height / 2) {

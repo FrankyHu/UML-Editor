@@ -22,32 +22,33 @@ public class BaseLineMode extends Mode{
 	
 	public void mousePressed(MouseEvent e){
 	    starte = e;
-	    startfigure = getTargetFigure(starte);
+	    startfigure = getTargetGraphic(starte);
 	    startpoint=null;
 	    if (startfigure != null) {
-	    	startpoint = startfigure.GetPort(starte);
+	    	startpoint = startfigure.getPort(starte);
 	    }
 	    System.out.print("Line mode, mouse Pressed!\n");
 	}
 	
+	// Unused method
 	public void mouseReleased(MouseEvent e){
-		System.out.print("Line mode, mouse Released!\n");
+
 	}
 	
 	public void mouseEntered(MouseEvent e){
-		System.out.print("Line mode, mouse Entered!\n");
+
 	}
 	
 	public void mouseExited(MouseEvent e){
-	    System.out.print("Line mode, mouse Exited!\n");
+
 	}
 	
 	public void mouseMoved(MouseEvent e){
-	    System.out.print("Line mode, mouse Moved!\n");
+
 	}
 	
 	public void mouseDragged(MouseEvent e){
-		System.out.print("Line mode, mouse Dragged!\n");
+
 	}
 
 }
