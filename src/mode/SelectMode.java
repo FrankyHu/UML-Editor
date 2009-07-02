@@ -6,7 +6,7 @@ import controller.*;
 import graphic.*;
 
 public class SelectMode extends Mode {
-	Range region;
+	Range range;
 	Graphic targetGraphic = null;
 	int targetPortNum = 0;
 	MouseEvent startSelect = null;
@@ -27,8 +27,9 @@ public class SelectMode extends Mode {
 	public void mousePressed(MouseEvent e) {
 	    targetGraphic = getTargetGraphic(e);
 	    startSelect = e;
-	    if (targetGraphic == null) { // if null, then draw select region
-	    	region = new Range(e.getX(), e.getY());
+	    if (targetGraphic == null) {
+	    	// Draw select range
+	    	range = new Range(e.getX(), e.getY());
 	    	selectOne(); // Remove all selected object
 	    }
 	    else if(targetGraphic.isHighlighted == true && (targetGraphic.getClass().getSuperclass().getName() == "graphic.BasicObject")) { // If targetGraphic is selected, then find which port inside
@@ -39,9 +40,10 @@ public class SelectMode extends Mode {
 
 	public void mouseReleased(MouseEvent e) {
 	    if (targetGraphic == null) { // If null, then region is draw
+	    	// Range is draw
 	    	endSelect = e;
 	    	selectRegion();
-	    	EditorController.getInstance().graphicArray.remove(region);
+	    	EditorController.getInstance().graphicArray.remove(range);
 	    }
 	    EditorController.mainFrame.repaint();
 	}
@@ -72,12 +74,12 @@ public class SelectMode extends Mode {
 	    }
 	    else if (targetGraphic == null) {
 	    	// Didn't press any object, draw select region
-	    	region.graphicPoint.x = Math.min(endSelect.getX(), startSelect.getX());
-	    	region.graphicPoint.y = Math.min(endSelect.getY(), startSelect.getY());
-	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
-	    	region.height = Math.abs(endSelect.getY() - startSelect.getY());
-	    	EditorController.getInstance().graphicArray.remove(region); // Remove region first
-	    	EditorController.getInstance().graphicArray.add(region); // Add region to graphicArray, and remove it when mouse release
+	    	range.graphicPoint.x = Math.min(endSelect.getX(), startSelect.getX());
+	    	range.graphicPoint.y = Math.min(endSelect.getY(), startSelect.getY());
+	    	range.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
+	    	range.height = Math.abs(endSelect.getY() - startSelect.getY());
+	    	EditorController.getInstance().graphicArray.remove(range); // Remove region first
+	    	EditorController.getInstance().graphicArray.add(range); // Add region to graphicArray, and remove it when mouse release
 	    }
 	    EditorController.mainFrame.repaint();
 	}
@@ -106,9 +108,9 @@ public class SelectMode extends Mode {
 			if (EditorController.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BasicObject"){
 				tempGraphic = ( (BasicObject) EditorController.getInstance().graphicArray.get(i));
 
-				if ((region.graphicPoint.x <= tempGraphic.graphicPoint.x) && (region.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
-	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (region.graphicPoint.x + region.width)) &&
-	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (region.graphicPoint.y + region.height))) {
+				if ((range.graphicPoint.x <= tempGraphic.graphicPoint.x) && (range.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
+	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (range.graphicPoint.x + range.width)) &&
+	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (range.graphicPoint.y + range.height))) {
 					// Graphic is in region
 					if (tempGraphic.isHighlighted == true) {
 						tempGraphic.disableHighlight();
@@ -122,9 +124,9 @@ public class SelectMode extends Mode {
 			if (EditorController.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") {
 				tempGraphic = ( (CompositeObject) EditorController.getInstance().graphicArray.get(i));
 
-				if ((region.graphicPoint.x <= tempGraphic.graphicPoint.x) && (region.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
-	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (region.graphicPoint.x + region.width)) &&
-	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (region.graphicPoint.y + region.height))) {
+				if ((range.graphicPoint.x <= tempGraphic.graphicPoint.x) && (range.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
+	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (range.graphicPoint.x + range.width)) &&
+	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (range.graphicPoint.y + range.height))) {
 					// Graphic is in region
 					if (tempGraphic.isHighlighted == true) {
 						tempGraphic.disableHighlight();

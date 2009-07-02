@@ -10,9 +10,10 @@ public class MoreMenu extends JMenu implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	JMenuItem rename = new JMenuItem();
 	JMenuItem group = new JMenuItem();
 	JMenuItem ungroup = new JMenuItem();
-	JMenuItem rename = new JMenuItem();
 
 	public MoreMenu() {
 		this.setText("More");
@@ -26,14 +27,14 @@ public class MoreMenu extends JMenu implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == group) {
-			EditorController.getInstance().group();
+		if (e.getSource() == rename) {
+	    	EditorController.getInstance().rename();
 		}
+	    else if (e.getSource() == group) {
+	    	EditorController.getInstance().group();
+	    }
 	    else if (e.getSource() == ungroup) {
 	    	EditorController.getInstance().ungroup();
-	    }
-	    else if (e.getSource() == rename) {
-	    	EditorController.getInstance().rename();
 	    }
 	  }
 

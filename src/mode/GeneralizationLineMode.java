@@ -17,7 +17,7 @@ public class GeneralizationLineMode extends LineMode{
 	    endGraphic = getTargetGraphic(endPoint);
 	    if ((endGraphic != null) && (startPort != null) && (endGraphic != startGrapic)) {
 	    	endPort = endGraphic.getPort(endPoint);
-	    	EditorController.getInstance().addGraphic(new GeneralizationLine(EditorController.getInstance().IDcount, startPort, endPort), e);
+	    	EditorController.getInstance().addGraphic(new GeneralizationLine(EditorController.getInstance().lineCounter, startPort, endPort), e);
 	    }
 	    EditorController.mainFrame.repaint();
 	}
@@ -29,7 +29,7 @@ public class GeneralizationLineMode extends LineMode{
 	    	endPort.x = endPoint.getX();
 	    	endPort.y = endPoint.getY();
 	    	EditorController.getInstance().graphicArray.remove(tempLine);
-	    	tempLine = new GeneralizationLine(EditorController.getInstance().IDcount, startPort,endPort);
+	    	tempLine = new GeneralizationLine(EditorController.getInstance().lineCounter, startPort,endPort);
 	    	EditorController.getInstance().addGraphic(tempLine,e);
 	    	EditorController.mainFrame.repaint();
 	    }

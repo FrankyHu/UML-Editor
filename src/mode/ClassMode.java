@@ -11,8 +11,9 @@ public class ClassMode extends Mode {
 	}
 
 	public void mouseClicked(MouseEvent e){
-		EditorController.getInstance().IDcount++;
-		EditorController.getInstance().addGraphic(new Class(EditorController.getInstance().IDcount, e), e);
+		EditorController.getInstance().lineCounter++;
+		EditorController.getInstance().classCounter++;
+		EditorController.getInstance().addGraphic(new Class(EditorController.getInstance().classCounter, e), e);
 		EditorController.mainFrame.repaint();
 		// System.out.println("size = "+ EditorController.getInstance().graphicArray.size());
 	}

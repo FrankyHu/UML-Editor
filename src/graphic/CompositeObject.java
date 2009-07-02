@@ -12,57 +12,43 @@ public class CompositeObject extends Graphic {
 		// Set Composite width and height
 		width = 0;
 		height = 0;
-		
-		graphicID = ++EditorController.getInstance().IDcount;
+		EditorController.getInstance().compositeCounter++;
+		graphicID = EditorController.getInstance().compositeCounter;
 		graphicName  = "Composite " + graphicID;
 	}
 
 	public void addBasicObject(Graphic graphic) {
 		groupArray.add(graphic);
 		setRange(graphic);
-		// attachPort();
 	}
 
 	public void setRange(Graphic graphic) {
-		System.out.println(graphic.getClass().getSuperclass().getName());
-
 		if(graphic.getClass().getSuperclass().getName() == "graphic.BasicObject") {
 			if (graphicPoint == null){
 				graphicPoint = new Point();
-				graphicPoint.x=graphic.graphicPoint.x;
-				graphicPoint.y=graphic.graphicPoint.y;
+				graphicPoint.x = graphic.graphicPoint.x;
+				graphicPoint.y = graphic.graphicPoint.y;
 				height = graphic.height;
 				width = graphic.width;
 			}
-			// System.out.println("處理"+graphic.graphicID);
-			// System.out.println("f的最下點為"+graphic.graphicPoint.y+"100");
-			// System.out.println("g的最上點為"+this.graphicPoint.y);
-			// System.out.println("g的高為"+this.height);
-			if (graphic.graphicPoint.x < this.graphicPoint.x) {
-				width = this.graphicPoint.x + this.width - graphic.graphicPoint.x;
+
+			if (graphic.graphicPoint.x < graphicPoint.x) {
+				width = graphicPoint.x + width - graphic.graphicPoint.x;
 				graphicPoint.x = graphic.graphicPoint.x;
 			}
-			if (graphic.graphicPoint.y < this.graphicPoint.y) {
-				height = this.graphicPoint.y + this.height - graphic.graphicPoint.y;
+			
+			if (graphic.graphicPoint.y < graphicPoint.y) {
+				height = graphicPoint.y + height - graphic.graphicPoint.y;
 				graphicPoint.y = graphic.graphicPoint.y;
 			}
-			if ((graphic.graphicPoint.x + graphic.width) > (this.graphicPoint.x + this.width)) {
-				width = (graphic.graphicPoint.x + graphic.width) - this.graphicPoint.x;
+			
+			if ((graphic.graphicPoint.x + graphic.width) > (graphicPoint.x + width)) {
+				width = (graphic.graphicPoint.x + graphic.width) - graphicPoint.x;
 			}
-			if ((graphic.graphicPoint.y + graphic.height) > (this.graphicPoint.y + this.height)) {
-				height = (graphic.graphicPoint.y + graphic.height) - this.graphicPoint.y;
+			
+			if ((graphic.graphicPoint.y + graphic.height) > (graphicPoint.y + height)) {
+				height = (graphic.graphicPoint.y + graphic.height) - graphicPoint.y;
 			}
-		}
-	}
-
-	public void draw(Graphics g) {
-		g.setColor(Color.magenta);
-		g.drawRoundRect(graphicPoint.x,graphicPoint.y,width,height, 10, 10);
-		g.drawString(graphicName, graphicPoint.x, graphicPoint.y - 5);
-		// System.out.println("共有元件"+this.groupArray.size()+"個");
-		for(int i = 0; i < groupArray.size(); i++){
-			// System.out.println("繪出元件"+((Graphic)this.groupArray.get(i)).graphicID+"個");
-			((Graphic) groupArray.get(i)).draw(g);
 		}
 	}
 
@@ -80,13 +66,22 @@ public class CompositeObject extends Graphic {
 		this.isHighlighted = false;
 	}
 	
-	public void setPosition(int distanceX,int distanceY) { //Group move each figure reset position
-		System.out.println("Group setPosition");
+	public void setPosition(int distanceX,int distanceY) { // Move each graphic and reset position
+		System.out.println("CompositeObject: setPosition");
 		for(int i = 0; i< groupArray.size(); i++) {
 			if ((groupArray.get(i)).getClass().getSuperclass().getName() == "graphic.BasicObject")
 				((BasicObject) groupArray.get(i)).setPosition(distanceX, distanceY);
 		}
 		graphicPoint.x = graphicPoint.x + distanceX;
 		graphicPoint.y = graphicPoint.y + distanceY;
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(Color.red);
+		g.drawRoundRect(graphicPoint.x - 5, graphicPoint.y - 5, width + 10, height + 10, 10, 10);
+		g.drawString(graphicName, graphicPoint.x, graphicPoint.y - 10);
+		for(int i = 0; i < groupArray.size(); i++){
+			((Graphic) groupArray.get(i)).draw(g);
+		}
 	}
 }

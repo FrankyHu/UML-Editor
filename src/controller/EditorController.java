@@ -16,7 +16,11 @@ import graphic.*;
 
 public class EditorController {
 	public Vector graphicArray = new Vector();
-	public int IDcount = 0;
+
+	public int classCounter = 0;
+	public int useCaseCounter = 0;
+	public int compositeCounter = 0;
+	public int lineCounter = 0;
 	
 	private static EditorController _instance = null;
 	
@@ -132,34 +136,23 @@ public class EditorController {
 	}
 	
 	public void ungroup() {
-		Vector ungrouplist = new Vector();
+		Vector ungroupArray = new Vector();
 		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
 			if ((EditorController.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") && (((CompositeObject) EditorController.getInstance().graphicArray.get(i)).isHighlighted == true)) {
-				ungrouplist.add(EditorController.getInstance().graphicArray.get(i));
+				ungroupArray.add(EditorController.getInstance().graphicArray.get(i));
 			}
 		}
-		// System.out.println("Srating ungroup");
-		if (ungrouplist.size() == 1) { 
-			for (int j = 0; j < ((CompositeObject) ungrouplist.get(0)).groupArray.size(); j++) {
+
+		if (ungroupArray.size() == 1) { 
+			for (int j = 0; j < ((CompositeObject) ungroupArray.get(0)).groupArray.size(); j++) {
 				// System.out.print("元件編號 : " + j);
 				// System.out.println(" 型別 = " + ((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).getClass().getName());
-				((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).isHighlighted = false;
-				EditorController.getInstance().graphicArray.add(((CompositeObject) ungrouplist.get(0)).groupArray.get(j));
+				((Graphic) ((CompositeObject) ungroupArray.get(0)).groupArray.get(j)).isHighlighted = false;
+				EditorController.getInstance().graphicArray.add(((CompositeObject) ungroupArray.get(0)).groupArray.get(j));
 			}
-			EditorController.getInstance().graphicArray.remove(((CompositeObject) ungrouplist.get(0)));
-			DeleteOrphanLine(((CompositeObject) ungrouplist.get(0)));
+			EditorController.getInstance().graphicArray.remove(((CompositeObject) ungroupArray.get(0)));
 		}
 		EditorController.mainFrame.repaint();
-	}
-	
-	public void DeleteOrphanLine(Graphic f) {
-		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
-			if ( (EditorController.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.Line") && ((((Line) EditorController.getInstance().graphicArray.get(i)).startpoint.connectedGraphic == f) || (((Line) EditorController.getInstance().graphicArray.get(i)).endpoint.connectedGraphic == f))){
-				EditorController.getInstance().graphicArray.remove(EditorController.getInstance().graphicArray.get(i));
-				i--;
-				EditorController.mainFrame.repaint();
-			}
-		}
 	}
 
 	public static void main(String[] args){

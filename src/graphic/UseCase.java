@@ -10,8 +10,8 @@ public class UseCase extends BasicObject {
 	
 	public UseCase(int gID, MouseEvent e) {
 		// Set UseCase width and height
-		width = 100;
-	    height = 70;
+		width = 120;
+	    height = 60;
 	    
 	    graphicID = gID;
 	    graphicName = "Use Case " + gID;
@@ -24,13 +24,13 @@ public class UseCase extends BasicObject {
 
 	public void draw(Graphics g) {
 		if (isHighlighted == true) {
-			this.draw(g, Color.yellow);
+			draw(g, Color.yellow);
 			for (int i = 1; i <= PortNum; i++) {
-				this.portList[i].draw(g);
+				portList[i].draw(g);
 			}
 		}
 		else {
-			this.draw(g, Color.white);
+			draw(g, Color.white);
 		}
 	}
 

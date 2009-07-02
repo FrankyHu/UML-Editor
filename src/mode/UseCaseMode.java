@@ -11,8 +11,9 @@ public class UseCaseMode extends Mode {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		EditorController.getInstance().IDcount++;
-		EditorController.getInstance().addGraphic(new UseCase(EditorController.getInstance().IDcount, e), e);
+		EditorController.getInstance().lineCounter++;
+		EditorController.getInstance().useCaseCounter++;
+		EditorController.getInstance().addGraphic(new UseCase(EditorController.getInstance().useCaseCounter, e), e);
 		EditorController.mainFrame.repaint();
 	}
 	

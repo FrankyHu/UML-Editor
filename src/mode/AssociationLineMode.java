@@ -17,7 +17,7 @@ public class AssociationLineMode extends LineMode{
 	    endGraphic = getTargetGraphic(endPoint);
 	    if ((endGraphic != null) && (startPort != null)) {
 	    	endPort = endGraphic.getPort(endPoint);
-	    	EditorController.getInstance().addGraphic(new AssociationLine(EditorController.getInstance().IDcount, startPort, endPort), endPoint);
+	    	EditorController.getInstance().addGraphic(new AssociationLine(EditorController.getInstance().lineCounter, startPort, endPort), endPoint);
 	    }
 	    EditorController.mainFrame.repaint();
 	}
@@ -29,7 +29,7 @@ public class AssociationLineMode extends LineMode{
 	    	endPort.x = endPoint.getX();
 	    	endPort.y = endPoint.getY();
 	    	EditorController.getInstance().graphicArray.remove(tempLine);// Remove the line when last mouse drag create
-	    	tempLine = new AssociationLine(EditorController.getInstance().IDcount, startPort,endPort);
+	    	tempLine = new AssociationLine(EditorController.getInstance().lineCounter, startPort,endPort);
 	    	EditorController.getInstance().addGraphic(tempLine, e);// Only visible when mouse drag, will be remove when mouse release
 	    	EditorController.mainFrame.repaint();
 	    }

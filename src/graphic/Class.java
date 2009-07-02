@@ -7,7 +7,7 @@ public class Class extends BasicObject{
 
 	public Class(int gID, MouseEvent e) {
 		// Set class width and height
-		width = 100;
+		width = 80;
 		height = 100;
 		
 		graphicID = gID;
@@ -22,13 +22,13 @@ public class Class extends BasicObject{
 	public void draw(Graphics g){
 
 		if (isHighlighted == true){
-			this.draw(g,Color.yellow);
+			draw(g, Color.lightGray);
 			for (int i = 1; i <= PortNum; i++) {
-				this.portList[i].draw(g);
+				portList[i].draw(g);
 			}
 		}
 		else {
-			this.draw(g, Color.white);
+			draw(g, Color.white);
 		}
 	}
 
@@ -38,8 +38,9 @@ public class Class extends BasicObject{
 	    g.setColor(Color.black);
 	    g.drawRect(graphicPoint.x, graphicPoint.y, width, height);
 	    g.drawString(graphicName, graphicPoint.x + width / 10, graphicPoint.y + height / 5);
-	    g.drawLine(graphicPoint.x, graphicPoint.y + height / 3, graphicPoint.x + width, graphicPoint.y + height / 3);
-	    g.drawLine(graphicPoint.x, graphicPoint.y + (height / 3) * 2, graphicPoint.x + width, graphicPoint.y + (height / 3) * 2);
+	    g.drawLine(graphicPoint.x, graphicPoint.y + height / 4, graphicPoint.x + width, graphicPoint.y + height / 4);
+	    g.drawLine(graphicPoint.x, graphicPoint.y + (height / 4) * 2, graphicPoint.x + width, graphicPoint.y + (height / 4) * 2);
+	    g.drawLine(graphicPoint.x, graphicPoint.y + (height / 4) * 3, graphicPoint.x + width, graphicPoint.y + (height / 4) * 3);
 	}
 
 }

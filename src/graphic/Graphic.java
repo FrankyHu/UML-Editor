@@ -8,8 +8,8 @@ abstract public class Graphic {
 	public boolean isHighlighted = false;
 	public int depth = 1;
 	public int graphicID;
-	public Point graphicPoint = null;
-	public String graphicName = null;
+	public Point graphicPoint;
+	public String graphicName;
 	public ConnectionPort portList[] = new ConnectionPort [5];
 	public int width;
 	public int height;
