@@ -26,7 +26,9 @@ public class CompositeObject extends Graphic {
 	}
 
 	public void setplace(Graphic f) {
-		if(f.getClass().getSuperclass().getName() == "graphic.BaseObject") {
+		System.out.println(f.getClass().getSuperclass().getName());
+
+		if(f.getClass().getSuperclass().getName() == "graphic.BasicObject") {
 			if (this.graphicPoint == null){
 				this.graphicPoint= new Point();
 				this.graphicPoint.x=f.graphicPoint.x;
@@ -86,7 +88,7 @@ public class CompositeObject extends Graphic {
 
 	public void setPosition(int distx,int disty) { //Group move each figure reset position
 		for(int i =0; i<this.groupArray.size(); i++){
-			if ((this.groupArray.get(i)).getClass().getSuperclass().getName() == "graphic.BaseObject")
+			if ((this.groupArray.get(i)).getClass().getSuperclass().getName() == "graphic.BasicObject")
 				((BasicObject)this.groupArray.get(i)).setPosition(distx, disty);
 		}
 		super.setPosition(distx, disty);

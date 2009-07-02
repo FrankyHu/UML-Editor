@@ -93,7 +93,7 @@ public class SelectMode extends Mode {
 	public void selectRegion() {
 		Graphic tempfigure = null;
 		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BaseObject"){
+			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BasicObject"){
 				tempfigure = ( (BasicObject) Controller.getInstance().graphicArray.get(i));
 
 				if ((region.graphicPoint.x <= tempfigure.graphicPoint.x) && (region.graphicPoint.y <= tempfigure.graphicPoint.y) &&
