@@ -15,7 +15,7 @@ public class ClassMode extends ObjectMode {
 		Controller.getInstance().IDcount++;
 		Controller.addGraphic(new Class(Controller.getInstance().IDcount,e), e);
 		Controller.mainFrame.repaint();
-		System.out.println("size = "+Controller.getInstance().graphicArray.size());
+		System.out.println("size = "+ Controller.getInstance().graphicArray.size());
 	}
 
 }

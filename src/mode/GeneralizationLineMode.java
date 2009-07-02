@@ -11,27 +11,26 @@ public class GeneralizationLineMode extends LineMode{
 		
 	}
 
-	public void mouseReleased(MouseEvent e){
-		Controller.getInstance().graphicArray.remove(templine);//把templine清除
-	    ende = e;
-	    endfigure = getTargetGraphic(ende);
-	    if ((endfigure != null) && (startpoint != null) && (endfigure != startfigure)) {
-	    	endpoint = endfigure.getPort(ende);
-	    	Controller.getInstance().IDcount++;
-	    	Controller.addGraphic(new GeneralizationLine(Controller.getInstance().IDcount, startpoint,endpoint), e);
+	public void mouseReleased(MouseEvent e) {
+		Controller.getInstance().graphicArray.remove(tempLine);
+	    endPoint = e;
+	    endGraphic = getTargetGraphic(endPoint);
+	    if ((endGraphic != null) && (startPort != null) && (endGraphic != startGrapic)) {
+	    	endPort = endGraphic.getPort(endPoint);
+	    	Controller.addGraphic(new GeneralizationLine(Controller.getInstance().IDcount, startPort, endPort), e);
 	    }
 	    Controller.mainFrame.repaint();
 	}
 
-	public void mouseDragged(MouseEvent e){
-	    ende = e;
-	    if (startpoint != null){
-	    	endpoint = new ConnectionPort(startfigure);//用來給templine使用的暫時endport
-	    	endpoint.x = ende.getX();
-	    	endpoint.y = ende.getY();
-	    	Controller.getInstance().graphicArray.remove(templine);//移除前一次dragged加入的templine
-	    	templine = new GeneralizationLine(Controller.getInstance().IDcount, startpoint,endpoint);
-	    	Controller.addGraphic(templine,e);//加入templine使拉線的過程中可以看見，在mouserelease時移除
+	public void mouseDragged(MouseEvent e) {
+	    endPoint = e;
+	    if (startPort != null) {
+	    	endPort = new ConnectionPort(startGrapic);
+	    	endPort.x = endPoint.getX();
+	    	endPort.y = endPoint.getY();
+	    	Controller.getInstance().graphicArray.remove(tempLine);
+	    	tempLine = new GeneralizationLine(Controller.getInstance().IDcount, startPort,endPort);
+	    	Controller.addGraphic(tempLine,e);
 	    	Controller.mainFrame.repaint();
 	    }
 	}

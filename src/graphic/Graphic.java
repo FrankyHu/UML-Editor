@@ -23,8 +23,7 @@ abstract public class Graphic {
 	}
 
 	public ConnectionPort getPort(MouseEvent e) {
-		ConnectionPort temp = null;
-		return temp;
+		return null;
 	}
 
 	public void highlight(){

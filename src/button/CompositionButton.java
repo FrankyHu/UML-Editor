@@ -18,8 +18,7 @@ public class CompositionButton extends JButton implements ActionListener{
 	    this.setBorderPainted(false);
 	}
 
-	public void actionPerformed(ActionEvent e){
-	    System.out.println("CompositionButton Pressed");
+	public void actionPerformed(ActionEvent e) {
 	    Controller.currentMode = Controller.createCompositionLineMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/composition_down.jpg"));

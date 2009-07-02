@@ -18,8 +18,7 @@ public class ClassButton extends JButton implements ActionListener{
 	    this.setBorderPainted(false);
 	}
 
-	public void actionPerformed(ActionEvent e){
-	    System.out.println("ClassButton Pressed");
+	public void actionPerformed(ActionEvent e) {
 	    Controller.currentMode = Controller.createClassMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/class_down.jpg"));

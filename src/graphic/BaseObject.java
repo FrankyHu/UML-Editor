@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 abstract public class BaseObject extends Graphic {
 
-	public int Group_ID;
+	public int groupID;
 	int NowPosX,NowPosY;
 
 	public BaseObject() {
@@ -13,17 +13,17 @@ abstract public class BaseObject extends Graphic {
 		}
 	}
 
-	public boolean isSelected(MouseEvent e,int O_width, int O_height) {
+	public boolean isSelected(MouseEvent e, int objectWidth, int objectHeight) {
 		NowPosX = e.getX();
 		NowPosY = e.getY();
-		System.out.println("width = "+O_width);
-		System.out.println("height = "+O_height);
+		System.out.println("width = " + objectWidth);
+		System.out.println("height = " + objectHeight);
 		if ((NowPosX <= position.x + width - 1) && (NowPosX >= position.x) && (NowPosY <= position.y + height - 1) && (NowPosY >= position.y)) {
 			System.out.println("result = true");
 			return true;
 		}
 		else if (((NowPosX < position.x) && (NowPosY <= position.y + height - 1)) || ((NowPosY < position.y) && (NowPosX <= position.x + width - 1))) {
-			if ((NowPosX + O_width >= position.x) && (NowPosY+ O_height >= position.y)) {
+			if ((NowPosX + objectWidth >= position.x) && (NowPosY + objectHeight >= position.y)) {
 				System.out.println("result = true");
 				return true;
 			}

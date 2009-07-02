@@ -5,7 +5,6 @@ import java.awt.event.*;
 import controller.*;
 import graphic.*;
 
-
 public class AssociationLineMode extends LineMode{
 
 	public AssociationLineMode() {
@@ -13,26 +12,25 @@ public class AssociationLineMode extends LineMode{
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		Controller.getInstance().graphicArray.remove(templine); // Remove templine
-	    ende = e;
-	    endfigure = getTargetGraphic(ende);
-	    if ((endfigure != null) && (startpoint != null)) {
-	    	endpoint = endfigure.getPort(ende);
-	    	Controller.getInstance().IDcount++;
-	    	Controller.addGraphic(new AssociationLine(Controller.getInstance().IDcount, startpoint,endpoint), ende);
+		Controller.getInstance().graphicArray.remove(tempLine); // Remove tempLine
+	    endPoint = e;
+	    endGraphic = getTargetGraphic(endPoint);
+	    if ((endGraphic != null) && (startPort != null)) {
+	    	endPort = endGraphic.getPort(endPoint);
+	    	Controller.addGraphic(new AssociationLine(Controller.getInstance().IDcount, startPort, endPort), endPoint);
 	    }
 	    Controller.mainFrame.repaint();
 	}
 
-	public void mouseDragged(MouseEvent e){
-		ende = e;
-	    if (startpoint != null){
-	    	endpoint = new ConnectionPort(startfigure);//用來給templine使用的暫時endport
-	    	endpoint.x = ende.getX();
-	    	endpoint.y = ende.getY();
-	    	Controller.getInstance().graphicArray.remove(templine);//移除前一次dragged加入的templine
-	    	templine = new AssociationLine(Controller.getInstance().IDcount, startpoint,endpoint);
-	    	Controller.addGraphic(templine,e);//加入templine使拉線的過程中可以看見，在mouserelease時移除
+	public void mouseDragged(MouseEvent e) {
+		endPoint = e;
+	    if (startPort != null){
+	    	endPort = new ConnectionPort(startGrapic);// For tempLine use only
+	    	endPort.x = endPoint.getX();
+	    	endPort.y = endPoint.getY();
+	    	Controller.getInstance().graphicArray.remove(tempLine);// Remove the line when last mouse drag create
+	    	tempLine = new AssociationLine(Controller.getInstance().IDcount, startPort,endPort);
+	    	Controller.addGraphic(tempLine, e);// Only visible when mouse drag, will be remove when mouse release
 	    	Controller.mainFrame.repaint();
 	    }
 	}

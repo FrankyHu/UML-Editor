@@ -17,8 +17,7 @@ public class SelectButton extends JButton implements ActionListener{
 	    this.setBorderPainted(false);
 	}
 
-	public void actionPerformed(ActionEvent e){
-	    System.out.println("SelectButton Pressed");
+	public void actionPerformed(ActionEvent e) {
 	    Controller.currentMode = Controller.selectMode;
 	    Controller.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/select_down.jpg"));

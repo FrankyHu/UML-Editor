@@ -120,34 +120,38 @@ public class SelectMode extends Mode {
 	    return 0;
 	}
 
-	public void modifySize (BaseObject baseobject,int targetportNum,MouseEvent e) {
+	public void modifySize (BaseObject baseObject,int targetPortNum,MouseEvent e) {
 		int limit = 30;
-	    switch(targetportNum) {
+	    switch(targetPortNum) {
 	    	case 1 : 
-	    		if (e.getY() <= baseobject.position.y + baseobject.height - limit) {
-	    			baseobject.height = (baseobject.position.y + baseobject.height) - e.getY();
-	    			baseobject.position.y = e.getY();
+	    		if (e.getY() <= baseObject.position.y + baseObject.height - limit) {
+	    			baseObject.height = (baseObject.position.y + baseObject.height) - e.getY();
+	    			baseObject.position.y = e.getY();
 	    		}
 	    		break;
-	    	  
-	    	case 4 : 
-	    		if (e.getX() <= baseobject.position.x + baseobject.width - limit) {
-	    			baseobject.width = (baseobject.position.x+baseobject.width) - e.getX();
-	    			baseobject.position.x = e.getX();
-	    		}
-	    		break;
+	    		
 	    	case 2 : 
-	    		if (e.getX() >= baseobject.position.x + limit) {
-	    			baseobject.width = e.getX() - (baseobject.position.x);
+	    		if (e.getX() >= baseObject.position.x + limit) {
+	    			baseObject.width = e.getX() - (baseObject.position.x);
 	    		}
-	    	break;
+	    		break;
+	    	
 	    	case 3 : 
-	    		if (e.getY() >= baseobject.position.y + limit) {
-	    			baseobject.height = e.getY() - (baseobject.position.y);
+	    		if (e.getY() >= baseObject.position.y + limit) {
+	    			baseObject.height = e.getY() - (baseObject.position.y);
 	    		}
-	    	break;
+	    		break;
+	    	
+	    	case 4 : 
+	    		if (e.getX() <= baseObject.position.x + baseObject.width - limit) {
+	    			baseObject.width = (baseObject.position.x+baseObject.width) - e.getX();
+	    			baseObject.position.x = e.getX();
+	    		}
+	    		break;
+	    	default:
+	    		break;
 	    }
-	    baseobject.attachPort();
+	    baseObject.attachPort();
 	}
 	
 	// Unused method
