@@ -11,7 +11,7 @@ public class CompositeObject extends BaseObject {
 	public CompositeObject() {
 		this.width = 0;      // Set Group width and height
 		this.height = 0;
-		this.graphicID = ++Controller.IDcount;
+		this.graphicID = ++Controller.getInstance().IDcount;
 		graphicName  = "Group"+graphicID;
 
 		for (int i = 1; i <= PortNum; i++) { //new all port

@@ -41,7 +41,7 @@ public class SelectMode extends Mode {
 	    if (targetFigure == null) { //如果是null表已畫出region
 	    	endSelect = e;
 	    	selectRegion();
-	    	Controller.graphicArray.remove(region);
+	    	Controller.getInstance().graphicArray.remove(region);
 	    }
 	    Controller.mainFrame.repaint();
 	    System.out.print("Select mode, mouse Released!\n");
@@ -78,17 +78,17 @@ public class SelectMode extends Mode {
 	    	region.position.y = Math.min(endSelect.getY(),startSelect.getY());
 	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
 	    	region.height = Math.abs(endSelect.getY() - startSelect.getY());
-	    	Controller.graphicArray.remove(region);//不管有沒有region先移掉
-	    	Controller.graphicArray.add(region);//把region加到figurearray中，在mouserelease時須移除
+	    	Controller.getInstance().graphicArray.remove(region);//不管有沒有region先移掉
+	    	Controller.getInstance().graphicArray.add(region);//把region加到figurearray中，在mouserelease時須移除
 	    }
 	    Controller.mainFrame.repaint();
 	    System.out.print("Select mode, mouse Dragged!\n");
 	}
 
 	public void selectOne() {
-		for (int i = 0; i < Controller.graphicArray.size(); i++) {//把其他的dishighlight
-			if (((Graphic) Controller.graphicArray.get(i)) != targetFigure) {
-				((Graphic) Controller.graphicArray.get(i)).DisHighlight();
+		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {//把其他的dishighlight
+			if (((Graphic) Controller.getInstance().graphicArray.get(i)) != targetFigure) {
+				((Graphic) Controller.getInstance().graphicArray.get(i)).DisHighlight();
 			}
 	    }
 	    if (targetFigure != null) {
@@ -103,9 +103,9 @@ public class SelectMode extends Mode {
 
 	public void selectRegion() {
 		Graphic tempfigure = null;
-		for (int i = 0; i < Controller.graphicArray.size(); i++) {
-			if (Controller.graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BaseObject"){
-				tempfigure = ( (BaseObject) Controller.graphicArray.get(i));
+		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
+			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BaseObject"){
+				tempfigure = ( (BaseObject) Controller.getInstance().graphicArray.get(i));
 				//判斷figure是否在region內
 				if ((region.position.x <= tempfigure.position.x) && (region.position.y <= tempfigure.position.y) &&
 	             ((tempfigure.position.x + tempfigure.width) <= (region.position.x + region.width)) &&

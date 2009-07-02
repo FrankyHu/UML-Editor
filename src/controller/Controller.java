@@ -22,8 +22,8 @@ public class Controller {
 	public static AssociationLineMode createAssociationLineMode;
 	public static CompositionLineMode createCompositionLineMode;
 	public static GeneralizationLineMode createGeneralizationLineMode;
-	public static Vector graphicArray = new Vector();
-	public static int IDcount = 0;
+	public Vector graphicArray = new Vector();
+	public int IDcount = 0;
 
 	private Controller() {
 		this.mainFrame = new MainFrame();
@@ -43,7 +43,7 @@ public class Controller {
 	    
 	    content.setBackground(Color.white);
 	    content.add(toolBar,BorderLayout.WEST);
-	    content.add(this.canvas,BorderLayout.EAST);
+	    content.add(canvas,BorderLayout.EAST);
 	    mainFrame.setJMenuBar(menu);
 	    mainFrame.setVisible(true);
 	}
@@ -59,18 +59,18 @@ public class Controller {
 		if (getDeepestGraphic(e, graphic.width, graphic.height) != null){
 			graphic.depth = (getDeepestGraphic(e, graphic.width, graphic.height)).depth + 1;
 		}
-	    Controller.graphicArray.add(graphic);
+	    Controller.getInstance().graphicArray.add(graphic);
 	}
 
 	public static Graphic getDeepestGraphic(MouseEvent e, int width, int height) {
 		// To obtain the deepest object in graphic
 		Graphic deepestGraphic = null;
 	    int tempDepth = 0;
-	    for (int i = 0; i < Controller.graphicArray.size(); i++){
-	    	if (((Graphic) Controller.graphicArray.get(i)).isSelected(e, width, height)) {
-	    		if (tempDepth <= ((Graphic) Controller.graphicArray.get(i)).depth) {
-	    			tempDepth = ((Graphic) Controller.graphicArray.get(i)).depth;
-		    		deepestGraphic = ((Graphic) Controller.graphicArray.get(i));
+	    for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++){
+	    	if (((Graphic) Controller.getInstance().graphicArray.get(i)).isSelected(e, width, height)) {
+	    		if (tempDepth <= ((Graphic) Controller.getInstance().graphicArray.get(i)).depth) {
+	    			tempDepth = ((Graphic) Controller.getInstance().graphicArray.get(i)).depth;
+		    		deepestGraphic = ((Graphic) Controller.getInstance().graphicArray.get(i));
 	    		}
 	    	}
 	    }

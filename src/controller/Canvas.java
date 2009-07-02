@@ -52,8 +52,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	}
 
 	public void paint(Graphics g) {
-		for (int i = 0; i < Controller.graphicArray.size(); i++) {
-			((Graphic) Controller.graphicArray.get(i)).draw(g);
+		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
+			((Graphic) Controller.getInstance().graphicArray.get(i)).draw(g);
 	    }
 	}
 }

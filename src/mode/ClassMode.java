@@ -12,10 +12,10 @@ public class ClassMode extends BaseObjectMode {
 	}
 
 	public void mouseClicked(MouseEvent e){
-		Controller.IDcount++;
-		Controller.addGraphic(new Class(Controller.IDcount,e), e);
+		Controller.getInstance().IDcount++;
+		Controller.addGraphic(new Class(Controller.getInstance().IDcount,e), e);
 		Controller.mainFrame.repaint();
-		System.out.println("size = "+Controller.graphicArray.size());
+		System.out.println("size = "+Controller.getInstance().graphicArray.size());
 		System.out.print("create class mode, mouse Clicked!\n");
 	}
 
