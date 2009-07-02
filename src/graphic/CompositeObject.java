@@ -13,7 +13,7 @@ public class CompositeObject extends Graphic {
 		width = 0;
 		height = 0;
 		
-		graphicID = ++Controller.getInstance().IDcount;
+		graphicID = ++EditorController.getInstance().IDcount;
 		graphicName  = "Composite " + graphicID;
 	}
 

@@ -1,8 +1,10 @@
-package controller;
+package view;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import controller.EditorController;
 
 public class MainFrame extends JFrame {
   /**
@@ -39,9 +41,9 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void paint(){
-		Controller.menu.repaint();
-		Controller.toolBar.repaint();
-		Controller.canvas.repaint();
+		EditorController.menu.repaint();
+		EditorController.toolBar.repaint();
+		EditorController.canvas.repaint();
 	}
 
 }

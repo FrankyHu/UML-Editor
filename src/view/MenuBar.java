@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import javax.swing.*;
 

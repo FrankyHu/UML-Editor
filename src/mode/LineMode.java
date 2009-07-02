@@ -7,11 +7,12 @@ import graphic.*;
 public class LineMode extends Mode{
 	MouseEvent startPoint;
 	MouseEvent endPoint;
-	Graphic startGrapic = null;
-	Graphic endGraphic = null;
-	ConnectionPort startPort = null;
-	ConnectionPort endPort = null;
-	Line tempLine = null;
+	Graphic startGrapic;
+	Graphic endGraphic;
+	ConnectionPort startPort;
+	ConnectionPort endPort;
+	Line tempLine;
+	
 	public LineMode() {
 
 	}

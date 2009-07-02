@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.*;
 import javax.swing.*;
@@ -10,7 +10,7 @@ public class ToolBar extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	SelectButton selectButton = new SelectButton();
+	public SelectButton selectButton = new SelectButton();
 	AssociationButton associationButton = new AssociationButton();
 	GeneralizationButton generalizationButton = new GeneralizationButton();
 	CompositionButton compositionButton = new CompositionButton();

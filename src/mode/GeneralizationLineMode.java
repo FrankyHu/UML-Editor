@@ -12,14 +12,14 @@ public class GeneralizationLineMode extends LineMode{
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		Controller.getInstance().graphicArray.remove(tempLine);
+		EditorController.getInstance().graphicArray.remove(tempLine);
 	    endPoint = e;
 	    endGraphic = getTargetGraphic(endPoint);
 	    if ((endGraphic != null) && (startPort != null) && (endGraphic != startGrapic)) {
 	    	endPort = endGraphic.getPort(endPoint);
-	    	Controller.addGraphic(new GeneralizationLine(Controller.getInstance().IDcount, startPort, endPort), e);
+	    	EditorController.getInstance().addGraphic(new GeneralizationLine(EditorController.getInstance().IDcount, startPort, endPort), e);
 	    }
-	    Controller.mainFrame.repaint();
+	    EditorController.mainFrame.repaint();
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -28,10 +28,10 @@ public class GeneralizationLineMode extends LineMode{
 	    	endPort = new ConnectionPort(startGrapic);
 	    	endPort.x = endPoint.getX();
 	    	endPort.y = endPoint.getY();
-	    	Controller.getInstance().graphicArray.remove(tempLine);
-	    	tempLine = new GeneralizationLine(Controller.getInstance().IDcount, startPort,endPort);
-	    	Controller.addGraphic(tempLine,e);
-	    	Controller.mainFrame.repaint();
+	    	EditorController.getInstance().graphicArray.remove(tempLine);
+	    	tempLine = new GeneralizationLine(EditorController.getInstance().IDcount, startPort,endPort);
+	    	EditorController.getInstance().addGraphic(tempLine,e);
+	    	EditorController.mainFrame.repaint();
 	    }
 	}
 

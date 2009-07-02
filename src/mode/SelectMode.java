@@ -21,7 +21,7 @@ public class SelectMode extends Mode {
 	public void mouseClicked(MouseEvent e) {
 		targetGraphic = getTargetGraphic(e);
 	    selectOne(); // Select target
-	    Controller.mainFrame.repaint();
+	    EditorController.mainFrame.repaint();
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -34,16 +34,16 @@ public class SelectMode extends Mode {
 	    else if(targetGraphic.isHighlighted == true && (targetGraphic.getClass().getSuperclass().getName() == "graphic.BasicObject")) { // If targetGraphic is selected, then find which port inside
 	    	targetPortNum = selectedPort(((BasicObject) targetGraphic), startSelect);
 	    }
-	    Controller.mainFrame.repaint();
+	    EditorController.mainFrame.repaint();
 	}
 
 	public void mouseReleased(MouseEvent e) {
 	    if (targetGraphic == null) { // If null, then region is draw
 	    	endSelect = e;
 	    	selectRegion();
-	    	Controller.getInstance().graphicArray.remove(region);
+	    	EditorController.getInstance().graphicArray.remove(region);
 	    }
-	    Controller.mainFrame.repaint();
+	    EditorController.mainFrame.repaint();
 	}
 	
 	public void mouseDragged(MouseEvent e) {
@@ -76,17 +76,17 @@ public class SelectMode extends Mode {
 	    	region.graphicPoint.y = Math.min(endSelect.getY(), startSelect.getY());
 	    	region.width = Math.abs(endSelect.getX() - startSelect.getX()) ;
 	    	region.height = Math.abs(endSelect.getY() - startSelect.getY());
-	    	Controller.getInstance().graphicArray.remove(region); // Remove region first
-	    	Controller.getInstance().graphicArray.add(region); // Add region to graphicArray, and remove it when mouse release
+	    	EditorController.getInstance().graphicArray.remove(region); // Remove region first
+	    	EditorController.getInstance().graphicArray.add(region); // Add region to graphicArray, and remove it when mouse release
 	    }
-	    Controller.mainFrame.repaint();
+	    EditorController.mainFrame.repaint();
 	}
 
 	public void selectOne() {
 		// Disable highlight for all graphics
-		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if (((Graphic) Controller.getInstance().graphicArray.get(i)) != targetGraphic) {
-				((Graphic) Controller.getInstance().graphicArray.get(i)).disableHighlight();
+		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
+			if (((Graphic) EditorController.getInstance().graphicArray.get(i)) != targetGraphic) {
+				((Graphic) EditorController.getInstance().graphicArray.get(i)).disableHighlight();
 			}
 	    }
 		
@@ -102,9 +102,9 @@ public class SelectMode extends Mode {
 
 	public void selectRegion() {
 		Graphic tempGraphic = null;
-		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			if (Controller.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BasicObject"){
-				tempGraphic = ( (BasicObject) Controller.getInstance().graphicArray.get(i));
+		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
+			if (EditorController.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BasicObject"){
+				tempGraphic = ( (BasicObject) EditorController.getInstance().graphicArray.get(i));
 
 				if ((region.graphicPoint.x <= tempGraphic.graphicPoint.x) && (region.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
 	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (region.graphicPoint.x + region.width)) &&
@@ -119,8 +119,8 @@ public class SelectMode extends Mode {
 				}
 			}
 			
-			if (Controller.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") {
-				tempGraphic = ( (CompositeObject) Controller.getInstance().graphicArray.get(i));
+			if (EditorController.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") {
+				tempGraphic = ( (CompositeObject) EditorController.getInstance().graphicArray.get(i));
 
 				if ((region.graphicPoint.x <= tempGraphic.graphicPoint.x) && (region.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
 	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (region.graphicPoint.x + region.width)) &&

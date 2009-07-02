@@ -1,8 +1,10 @@
-package controller;
+package view;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import controller.EditorController;
 import graphic.*;
 
 
@@ -24,36 +26,36 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		Controller.currentMode.mouseClicked(e);
+		EditorController.currentMode.mouseClicked(e);
 	}
 	
 	public void mousePressed(MouseEvent e) {
-	    Controller.currentMode.mousePressed(e);
+	    EditorController.currentMode.mousePressed(e);
 	}
 	
 	public void mouseReleased(MouseEvent e) {
-	    Controller.currentMode.mouseReleased(e);
+	    EditorController.currentMode.mouseReleased(e);
 	}
 	
 	public void mouseEntered(MouseEvent e) {
-	    Controller.currentMode.mouseEntered(e);
+	    EditorController.currentMode.mouseEntered(e);
 	}
 	
 	public void mouseExited(MouseEvent e) {
-		Controller.currentMode.mouseExited(e);
+		EditorController.currentMode.mouseExited(e);
 	}
 	
 	public void mouseMoved(MouseEvent e) {
-	    Controller.currentMode.mouseMoved(e);
+	    EditorController.currentMode.mouseMoved(e);
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-	    Controller.currentMode.mouseDragged(e);
+	    EditorController.currentMode.mouseDragged(e);
 	}
 
 	public void paint(Graphics g) {
-		for (int i = 0; i < Controller.getInstance().graphicArray.size(); i++) {
-			((Graphic) Controller.getInstance().graphicArray.get(i)).draw(g);
+		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
+			((Graphic) EditorController.getInstance().graphicArray.get(i)).draw(g);
 	    }
 	}
 }
