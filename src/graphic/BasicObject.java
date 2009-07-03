@@ -3,14 +3,15 @@ package graphic;
 import java.awt.event.*;
 
 abstract public class BasicObject extends Graphic {
-
+	int PortNum = 4; //Set port number
 	public int groupID;
 	int currentX,currentY;
-
+	public ConnectionPort portArray[] = new ConnectionPort [5];
+	
 	public BasicObject() {
 		// new connection port
 		for (int i = 1; i <= PortNum; i++) {
-			portList[i] = new ConnectionPort(this);
+			portArray[i] = new ConnectionPort(this);
 		}
 	}
 
@@ -44,21 +45,21 @@ abstract public class BasicObject extends Graphic {
 			if (currentY - graphicPoint.y < height / 2) {
 				if (currentX - graphicPoint.x > currentY - graphicPoint.y) {
 					// Up
-					port = portList[1];
+					port = portArray[1];
 				}
 				else {
 					// Left
-					port = portList[4];
+					port = portArray[4];
 				}
 			}
 			else {
 				if (currentX - graphicPoint.x > graphicPoint.y + height - currentY) {
 					// Down
-					port = portList[3];
+					port = portArray[3];
 				}
 				else {
 					// Left
-					port = portList[4];
+					port = portArray[4];
 				}
 			}
 		}
@@ -67,21 +68,21 @@ abstract public class BasicObject extends Graphic {
 			if (currentY - graphicPoint.y < height / 2) {
 				if (graphicPoint.x + width - currentX > currentY - graphicPoint.y) {
 					// Up
-					port = portList[1];
+					port = portArray[1];
 				}
 				else {
 					// Right
-					port = portList[2];
+					port = portArray[2];
 				}
 			}
 			else {
 				if (graphicPoint.x + width - currentX > graphicPoint.y + height - currentY) {
 					// Down
-					port = portList[3];
+					port = portArray[3];
 				}
 				else {
 					// Right
-					port = portList[2];
+					port = portArray[2];
 				}
 			}
 		}
@@ -89,17 +90,17 @@ abstract public class BasicObject extends Graphic {
 	}
 
 	public void attachPort() {
-		portList[1].x = graphicPoint.x + (width / 2) - (portList[1].width / 2);
-		portList[1].y = graphicPoint.y - (portList[1].height / 2);
+		portArray[1].x = graphicPoint.x + (width / 2) - (portArray[1].width / 2);
+		portArray[1].y = graphicPoint.y - (portArray[1].height / 2);
 		
-		portList[2].x = graphicPoint.x + width - (portList[2].width / 2);
-		portList[2].y = graphicPoint.y + (height / 2) - (portList[2].height / 2);
+		portArray[2].x = graphicPoint.x + width - (portArray[2].width / 2);
+		portArray[2].y = graphicPoint.y + (height / 2) - (portArray[2].height / 2);
 		
-		portList[3].x = graphicPoint.x + (width / 2) - (portList[3].width / 2);
-		portList[3].y = graphicPoint.y + height - (portList[3].height / 2);
+		portArray[3].x = graphicPoint.x + (width / 2) - (portArray[3].width / 2);
+		portArray[3].y = graphicPoint.y + height - (portArray[3].height / 2);
 		
-		portList[4].x = graphicPoint.x - (portList[4].width / 2);
-		portList[4].y = graphicPoint.y + (height / 2) - (portList[4].height / 2);
+		portArray[4].x = graphicPoint.x - (portArray[4].width / 2);
+		portArray[4].y = graphicPoint.y + (height / 2) - (portArray[4].height / 2);
 	}
 
 	public void setPosition(int distanceX, int distanceY) {

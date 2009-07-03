@@ -18,8 +18,4 @@ abstract public class Mode implements MouseListener, MouseMotionListener {
 	abstract public void mouseMoved(MouseEvent e);
 	abstract public void mouseDragged(MouseEvent e);
 
-	public Graphic getTargetGraphic(MouseEvent e){
-		return EditorController.getInstance().getDeepestGraphic(e, 0, 0);
-	}
-
 }

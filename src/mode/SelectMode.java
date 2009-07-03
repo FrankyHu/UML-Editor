@@ -19,13 +19,13 @@ public class SelectMode extends Mode {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		targetGraphic = getTargetGraphic(e);
+		targetGraphic = EditorController.getInstance().getDeepestGraphic(e, 0, 0);
 	    selectThisGraphic(); // Select target
 	    EditorController.mainFrame.repaint();
 	}
 
 	public void mousePressed(MouseEvent e) {
-	    targetGraphic = getTargetGraphic(e);
+		targetGraphic = EditorController.getInstance().getDeepestGraphic(e, 0, 0);
 	    startSelect = e;
 	    if (targetGraphic == null) {
 	    	// Draw select range
@@ -139,7 +139,7 @@ public class SelectMode extends Mode {
 
 	public int selectedPort(BasicObject basicObject,MouseEvent e){
 		for (int i = 1; i <= 4; i++) {
-			if (basicObject.portList[i].isSelected(e, 0, 0)) {
+			if (basicObject.portArray[i].isSelected(e, 0, 0)) {
 				return i;
 			}
 		}

@@ -7,22 +7,12 @@ import java.awt.event.*;
 public class ConnectionPort extends Graphic {
 	public int x;
 	public int y;
-	int width = 10;
-	int height = 10;
+	int width = 16;
+	int height = 16;
 	public Graphic connectedGraphic;
+	
 	public ConnectionPort(Graphic graphic) {
 		connectedGraphic = graphic;
-	}
-
-	public void draw(Graphics g) {
-		this.draw(g,Color.cyan);
-	}
-
-	public void draw(Graphics g,Color color) {
-		g.setColor(color);
-		g.fillRect(x, y, width,height);
-		g.setColor(Color.black);
-		g.drawRect(x, y, width,height);
 	}
 
 	public boolean isSelected(MouseEvent e,int objectWidth, int objectHeight) {
@@ -50,4 +40,14 @@ public class ConnectionPort extends Graphic {
 		}
 	}
 	
+	public void draw(Graphics g) {
+		this.draw(g,Color.cyan);
+	}
+
+	public void draw(Graphics g,Color color) {
+		g.setColor(color);
+		g.fillRect(x, y, width,height);
+		g.setColor(Color.black);
+		g.drawRect(x, y, width,height);
+	}
 }

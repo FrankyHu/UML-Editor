@@ -4,14 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 abstract public class Graphic {
-	int PortNum = 4; //Set port number
 	public int width = 0;
 	public int height = 0;
 	public int depth = 1;
 	public int graphicID = 0;
 	public Point graphicPoint;
 	public String graphicName;
-	public ConnectionPort portList[] = new ConnectionPort [5];
+	
 	public boolean isHighlighted = false;
 	
 	public Graphic() {

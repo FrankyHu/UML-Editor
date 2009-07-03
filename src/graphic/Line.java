@@ -1,8 +1,8 @@
 package graphic;
 
 public class Line extends Graphic{
-	public ConnectionPort startpoint = null;
-	public ConnectionPort endpoint = null;
+	public ConnectionPort startpoint;
+	public ConnectionPort endpoint;
 
 	public Line () {
 		

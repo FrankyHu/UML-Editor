@@ -26,7 +26,7 @@ public class UseCase extends BasicObject {
 		if (isHighlighted == true) {
 			draw(g, Color.lightGray);
 			for (int i = 1; i <= PortNum; i++) {
-				portList[i].draw(g);
+				portArray[i].draw(g);
 			}
 		}
 		else {

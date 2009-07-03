@@ -2,6 +2,8 @@ package mode;
 
 import java.awt.event.*;
 
+import controller.EditorController;
+
 import graphic.*;
 
 public class LineMode extends Mode{
@@ -19,7 +21,7 @@ public class LineMode extends Mode{
 	
 	public void mousePressed(MouseEvent e) {
 	    startPoint = e; // The point when mouse press
-	    startGrapic = getTargetGraphic(startPoint); // Check if click in an object
+	    startGrapic = EditorController.getInstance().getDeepestGraphic(startPoint, 0, 0); // Check if click in an object
 
 	    if (startGrapic != null) {
 	    	startPort = startGrapic.getPort(startPoint);

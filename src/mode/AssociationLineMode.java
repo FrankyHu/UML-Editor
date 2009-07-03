@@ -14,7 +14,7 @@ public class AssociationLineMode extends LineMode{
 	public void mouseReleased(MouseEvent e) {
 		EditorController.getInstance().graphicArray.remove(tempLine); // Remove tempLine
 	    endPoint = e;
-	    endGraphic = getTargetGraphic(endPoint);
+	    endGraphic = EditorController.getInstance().getDeepestGraphic(endPoint, 0, 0);
 	    if ((endGraphic != null) && (startPort != null)) {
 	    	endPort = endGraphic.getPort(endPoint);
 	    	EditorController.getInstance().addGraphic(new AssociationLine(startPort, endPort), endPoint);

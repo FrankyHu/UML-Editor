@@ -14,7 +14,7 @@ public class GeneralizationLineMode extends LineMode{
 	public void mouseReleased(MouseEvent e) {
 		EditorController.getInstance().graphicArray.remove(tempLine);
 	    endPoint = e;
-	    endGraphic = getTargetGraphic(endPoint);
+	    endGraphic = EditorController.getInstance().getDeepestGraphic(endPoint, 0, 0);
 	    if ((endGraphic != null) && (startPort != null) && (endGraphic != startGrapic)) {
 	    	endPort = endGraphic.getPort(endPoint);
 	    	EditorController.getInstance().addGraphic(new GeneralizationLine(startPort, endPort), e);
