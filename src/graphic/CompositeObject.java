@@ -1,13 +1,15 @@
 package graphic;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.*;
 import controller.*;
 
 public class CompositeObject extends Graphic {
 
 	public Vector groupArray = new Vector();
-	  
+	int currentX,currentY;
+	
 	public CompositeObject() {
 		// Set Composite width and height
 		width = 0;
@@ -51,6 +53,29 @@ public class CompositeObject extends Graphic {
 			}
 		}
 	}
+	
+	public boolean isSelected(MouseEvent e, int objectWidth, int objectHeight) {
+		currentX = e.getX();
+		currentY = e.getY();
+		int widthUpperBound = graphicPoint.x + width - 1;
+		int widthLowerBound = graphicPoint.x;
+		int heightUpperBound = graphicPoint.y + height - 1;
+		int heightLowerBound = graphicPoint.y;
+		if ((currentX <= widthUpperBound) && (currentX >= widthLowerBound) && (currentY <= heightUpperBound) && (currentY >= heightLowerBound)) {
+			return true;
+		}
+		else if (((currentX < widthLowerBound) && (currentY <= heightUpperBound)) || ((currentY < heightLowerBound) && (currentX <= widthUpperBound))) {
+			if ((currentX + objectWidth >= widthLowerBound) && (currentY + objectHeight >= heightLowerBound)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 
 	public void highlight() {
 		for(int i = 0; i< groupArray.size(); i++) {
@@ -67,7 +92,6 @@ public class CompositeObject extends Graphic {
 	}
 	
 	public void setPosition(int distanceX,int distanceY) { // Move each graphic and reset position
-		System.out.println("CompositeObject: setPosition");
 		for(int i = 0; i< groupArray.size(); i++) {
 			if ((groupArray.get(i)).getClass().getSuperclass().getName() == "graphic.BasicObject")
 				((BasicObject) groupArray.get(i)).setPosition(distanceX, distanceY);

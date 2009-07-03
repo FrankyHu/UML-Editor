@@ -37,7 +37,5 @@ abstract public class Graphic {
 	public void draw(Graphics g) {
 		
 	}
-	
-
 
 }

@@ -11,8 +11,8 @@ public class SelectMode extends Mode {
 	int targetPortNum = 0;
 	MouseEvent startSelect = null;
 	MouseEvent endSelect = null;
-	int distX=0;
-	int distY=0;
+	int distanceX = 0;
+	int distanceY = 0;
 
 	public SelectMode() {
 		
@@ -54,10 +54,10 @@ public class SelectMode extends Mode {
 	    	
 	    	if (targetPortNum == 0) {
 	    		// Didn't press any port
-	    		distX =  endSelect.getX() - startSelect.getX();
-	    		distY =  endSelect.getY() - startSelect.getY();
+	    		distanceX =  endSelect.getX() - startSelect.getX();
+	    		distanceY =  endSelect.getY() - startSelect.getY();
 	    		startSelect = endSelect;
-	    		((BasicObject)targetGraphic).setPosition(distX, distY);
+	    		((BasicObject) targetGraphic).setPosition(distanceX, distanceY);
 	    	}
 	    	else if (targetGraphic.getClass().getName() != "graphic.CompositeObject") {
 	    		modifySize (((BasicObject) targetGraphic), targetPortNum, endSelect);
@@ -66,10 +66,10 @@ public class SelectMode extends Mode {
 	    else if (targetGraphic != null && (targetGraphic.getClass().getName() == "graphic.CompositeObject")) {
 	    	if (targetPortNum == 0) {
 	    		// Didn't press any port
-	    		distX =  endSelect.getX() - startSelect.getX();
-	    		distY =  endSelect.getY() - startSelect.getY();
+	    		distanceX =  endSelect.getX() - startSelect.getX();
+	    		distanceY =  endSelect.getY() - startSelect.getY();
 	    		startSelect = endSelect;
-	    		((CompositeObject)targetGraphic).setPosition(distX, distY);
+	    		((CompositeObject) targetGraphic).setPosition(distanceX, distanceY);
 	    	}
 	    }
 	    else if (targetGraphic == null) {

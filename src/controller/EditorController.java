@@ -82,6 +82,7 @@ public class EditorController {
 	    int depth = 0;
 	    for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
 	    	Graphic temp = ((Graphic) EditorController.getInstance().graphicArray.get(i));
+	    	System.out.println("Now at: " + i);
 	    	if (temp.isSelected(e, width, height)) {
 	    		if (depth <= temp.depth) {
 	    			depth = temp.depth;
@@ -122,7 +123,6 @@ public class EditorController {
 	    		}
 	    		flag = true;
 	    		group.addBasicObject(temp);
-	    		// System.out.println("graphic " +( (Graphic) Controller.getInstance().graphicArray.get(i)).graphicID +"Has been removed");
 	    		EditorController.getInstance().graphicArray.remove(temp);
 	    		i--;
 	    	}
@@ -131,7 +131,6 @@ public class EditorController {
 	    	group.disableHighlight();
 	    	EditorController.getInstance().graphicArray.add(group);
 	    }
-	    // System.out.println("flag == " + flag);
 	    EditorController.mainFrame.repaint();
 	}
 	
