@@ -4,8 +4,7 @@ import java.awt.*;
 
 public class AssociationLine extends Line{
 
-	public AssociationLine(int gID, ConnectionPort pstart, ConnectionPort pend) {
-		graphicID = gID;
+	public AssociationLine(ConnectionPort pstart, ConnectionPort pend) {
 		startpoint = pstart;
 		endpoint = pend;
 	}

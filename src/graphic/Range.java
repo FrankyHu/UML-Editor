@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Range extends BasicObject{
 
-
 	public Range(int x, int y) {
 		this.graphicPoint = new Point();
 		this.graphicPoint.x = x;

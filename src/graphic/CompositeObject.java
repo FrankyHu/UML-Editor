@@ -91,7 +91,8 @@ public class CompositeObject extends Graphic {
 		this.isHighlighted = false;
 	}
 	
-	public void setPosition(int distanceX,int distanceY) { // Move each graphic and reset position
+	public void setPosition(int distanceX,int distanceY) {
+		// Move each graphic and reset position
 		for(int i = 0; i< groupArray.size(); i++) {
 			if ((groupArray.get(i)).getClass().getSuperclass().getName() == "graphic.BasicObject")
 				((BasicObject) groupArray.get(i)).setPosition(distanceX, distanceY);

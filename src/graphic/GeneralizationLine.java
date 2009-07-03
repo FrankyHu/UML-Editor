@@ -2,12 +2,11 @@ package graphic;
 
 import java.awt.*;
 
-public class GeneralizationLine extends Line{
+public class GeneralizationLine extends Line {
 
-	int ArrowSize = 10;
+	int arrowSize = 10;
 
-	public GeneralizationLine(int F_ID,ConnectionPort pstart,ConnectionPort pend) {
-		graphicID = F_ID;
+	public GeneralizationLine(ConnectionPort pstart, ConnectionPort pend) {
 		startpoint = pstart;
 		endpoint = pend;
 	}
@@ -16,11 +15,11 @@ public class GeneralizationLine extends Line{
 		g.setColor(Color.black);
 		g.drawLine(startpoint.x + (startpoint.width / 2), startpoint.y + (startpoint.height / 2), endpoint.x + (endpoint.width / 2), endpoint.y + (startpoint.height / 2));
 		int correctX, correctY;
-		correctX = (int) (ArrowSize * countSin());
-		correctY = (int) (ArrowSize * countCos());
+		correctX = (int) (arrowSize * calculateSin());
+		correctY = (int) (arrowSize * calculateCos());
 		int x, y;
-		x = endpoint.x + (endpoint.width/2) - (int) (ArrowSize * countCos());
-		y = endpoint.y + (endpoint.height/2) + (int) (ArrowSize * countSin());
+		x = endpoint.x + (endpoint.width/2) - (int) (arrowSize * calculateCos());
+		y = endpoint.y + (endpoint.height/2) + (int) (arrowSize * calculateSin());
 		int xValue[] = {x - correctX, x + correctX, x + correctY};
 		int yValue[] = {y - correctY, y + correctY, y - correctX};
 		g.setColor(Color.white);

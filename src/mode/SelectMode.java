@@ -7,10 +7,10 @@ import graphic.*;
 
 public class SelectMode extends Mode {
 	Range range;
-	Graphic targetGraphic = null;
+	Graphic targetGraphic;
 	int targetPortNum = 0;
-	MouseEvent startSelect = null;
-	MouseEvent endSelect = null;
+	MouseEvent startSelect;
+	MouseEvent endSelect;
 	int distanceX = 0;
 	int distanceY = 0;
 
@@ -20,7 +20,7 @@ public class SelectMode extends Mode {
 
 	public void mouseClicked(MouseEvent e) {
 		targetGraphic = getTargetGraphic(e);
-	    selectOne(); // Select target
+	    selectThisGraphic(); // Select target
 	    EditorController.mainFrame.repaint();
 	}
 
@@ -30,7 +30,7 @@ public class SelectMode extends Mode {
 	    if (targetGraphic == null) {
 	    	// Draw select range
 	    	range = new Range(e.getX(), e.getY());
-	    	selectOne(); // Remove all selected object
+	    	selectThisGraphic(); // Remove all selected object
 	    }
 	    else if(targetGraphic.isHighlighted == true && (targetGraphic.getClass().getSuperclass().getName() == "graphic.BasicObject")) { // If targetGraphic is selected, then find which port inside
 	    	targetPortNum = selectedPort(((BasicObject) targetGraphic), startSelect);
@@ -39,10 +39,10 @@ public class SelectMode extends Mode {
 	}
 
 	public void mouseReleased(MouseEvent e) {
-	    if (targetGraphic == null) { // If null, then region is draw
+	    if (targetGraphic == null) {
 	    	// Range is draw
 	    	endSelect = e;
-	    	selectRegion();
+	    	selectRange();
 	    	EditorController.getInstance().graphicArray.remove(range);
 	    }
 	    EditorController.mainFrame.repaint();
@@ -50,8 +50,8 @@ public class SelectMode extends Mode {
 	
 	public void mouseDragged(MouseEvent e) {
 		endSelect = e;
-	    if (targetGraphic != null && (targetGraphic.getClass().getSuperclass().getName() == "graphic.BasicObject")) {// If not null, then object is selected
-	    	
+	    if (targetGraphic != null && (targetGraphic.getClass().getSuperclass().getName() == "graphic.BasicObject")) {
+	    	// Object is selected
 	    	if (targetPortNum == 0) {
 	    		// Didn't press any port
 	    		distanceX =  endSelect.getX() - startSelect.getX();
@@ -59,11 +59,9 @@ public class SelectMode extends Mode {
 	    		startSelect = endSelect;
 	    		((BasicObject) targetGraphic).setPosition(distanceX, distanceY);
 	    	}
-	    	else if (targetGraphic.getClass().getName() != "graphic.CompositeObject") {
-	    		modifySize (((BasicObject) targetGraphic), targetPortNum, endSelect);
-	    	}
 	    }
 	    else if (targetGraphic != null && (targetGraphic.getClass().getName() == "graphic.CompositeObject")) {
+	    	// Object is selected
 	    	if (targetPortNum == 0) {
 	    		// Didn't press any port
 	    		distanceX =  endSelect.getX() - startSelect.getX();
@@ -84,7 +82,7 @@ public class SelectMode extends Mode {
 	    EditorController.mainFrame.repaint();
 	}
 
-	public void selectOne() {
+	public void selectThisGraphic() {
 		// Disable highlight for all graphics
 		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
 			if (((Graphic) EditorController.getInstance().graphicArray.get(i)) != targetGraphic) {
@@ -102,37 +100,37 @@ public class SelectMode extends Mode {
 	    }
 	}
 
-	public void selectRegion() {
-		Graphic tempGraphic = null;
+	public void selectRange() {
+		Graphic temp;
 		for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
 			if (EditorController.getInstance().graphicArray.get(i).getClass().getSuperclass().getName() == "graphic.BasicObject"){
-				tempGraphic = ( (BasicObject) EditorController.getInstance().graphicArray.get(i));
+				temp = ( (BasicObject) EditorController.getInstance().graphicArray.get(i));
 
-				if ((range.graphicPoint.x <= tempGraphic.graphicPoint.x) && (range.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
-	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (range.graphicPoint.x + range.width)) &&
-	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (range.graphicPoint.y + range.height))) {
+				if ((range.graphicPoint.x <= temp.graphicPoint.x) && (range.graphicPoint.y <= temp.graphicPoint.y) &&
+	             ((temp.graphicPoint.x + temp.width) <= (range.graphicPoint.x + range.width)) &&
+	             ((temp.graphicPoint.y + temp.height) <= (range.graphicPoint.y + range.height))) {
 					// Graphic is in region
-					if (tempGraphic.isHighlighted == true) {
-						tempGraphic.disableHighlight();
+					if (temp.isHighlighted == true) {
+						temp.disableHighlight();
 					}
 					else {
-			            tempGraphic.highlight();
+			            temp.highlight();
 					}
 				}
 			}
 			
 			if (EditorController.getInstance().graphicArray.get(i).getClass().getName() == "graphic.CompositeObject") {
-				tempGraphic = ( (CompositeObject) EditorController.getInstance().graphicArray.get(i));
+				temp = ( (CompositeObject) EditorController.getInstance().graphicArray.get(i));
 
-				if ((range.graphicPoint.x <= tempGraphic.graphicPoint.x) && (range.graphicPoint.y <= tempGraphic.graphicPoint.y) &&
-	             ((tempGraphic.graphicPoint.x + tempGraphic.width) <= (range.graphicPoint.x + range.width)) &&
-	             ((tempGraphic.graphicPoint.y + tempGraphic.height) <= (range.graphicPoint.y + range.height))) {
+				if ((range.graphicPoint.x <= temp.graphicPoint.x) && (range.graphicPoint.y <= temp.graphicPoint.y) &&
+	             ((temp.graphicPoint.x + temp.width) <= (range.graphicPoint.x + range.width)) &&
+	             ((temp.graphicPoint.y + temp.height) <= (range.graphicPoint.y + range.height))) {
 					// Graphic is in region
-					if (tempGraphic.isHighlighted == true) {
-						tempGraphic.disableHighlight();
+					if (temp.isHighlighted == true) {
+						temp.disableHighlight();
 					}
 					else {
-			            tempGraphic.highlight();
+			            temp.highlight();
 					}
 				}
 			}
@@ -146,40 +144,6 @@ public class SelectMode extends Mode {
 			}
 		}
 	    return 0;
-	}
-
-	public void modifySize (BasicObject baseObject,int targetPortNum,MouseEvent e) {
-		int limit = 30;
-	    switch(targetPortNum) {
-	    	case 1 : 
-	    		if (e.getY() <= baseObject.graphicPoint.y + baseObject.height - limit) {
-	    			baseObject.height = (baseObject.graphicPoint.y + baseObject.height) - e.getY();
-	    			baseObject.graphicPoint.y = e.getY();
-	    		}
-	    		break;
-	    		
-	    	case 2 : 
-	    		if (e.getX() >= baseObject.graphicPoint.x + limit) {
-	    			baseObject.width = e.getX() - (baseObject.graphicPoint.x);
-	    		}
-	    		break;
-	    	
-	    	case 3 : 
-	    		if (e.getY() >= baseObject.graphicPoint.y + limit) {
-	    			baseObject.height = e.getY() - (baseObject.graphicPoint.y);
-	    		}
-	    		break;
-	    	
-	    	case 4 : 
-	    		if (e.getX() <= baseObject.graphicPoint.x + baseObject.width - limit) {
-	    			baseObject.width = (baseObject.graphicPoint.x + baseObject.width) - e.getX();
-	    			baseObject.graphicPoint.x = e.getX();
-	    		}
-	    		break;
-	    	default:
-	    		break;
-	    }
-	    baseObject.attachPort();
 	}
 	
 	// Unused method

@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 		
 		this.setName("UML Editor");
 		this.setTitle("UML Editor");
-		this.setSize(800, 650);
+		this.setSize(1024, 660);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = this.getSize();
 		

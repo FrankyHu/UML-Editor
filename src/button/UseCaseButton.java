@@ -19,7 +19,7 @@ public class UseCaseButton extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    EditorController.currentMode = EditorController.caseMode;
+		EditorController.currentMode = EditorController.caseMode;
 	    EditorController.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/usecase_down.jpg"));
 	}

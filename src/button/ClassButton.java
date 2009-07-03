@@ -19,7 +19,7 @@ public class ClassButton extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    EditorController.currentMode = EditorController.classMode;
+		EditorController.currentMode = EditorController.classMode;
 	    EditorController.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/class_down.jpg"));
 	}

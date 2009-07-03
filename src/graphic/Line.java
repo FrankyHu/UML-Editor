@@ -8,18 +8,18 @@ public class Line extends Graphic{
 		
 	}
 	
-	public double countSin() {
-		double sin = (startpoint.y - endpoint.y) / countDistance();
+	public double calculateSin() {
+		double sin = (startpoint.y - endpoint.y) / calculateDistance();
 		return sin;
 	}
 
-	public double countCos() {
-		double cos = (endpoint.x - startpoint.x) / countDistance();
+	public double calculateCos() {
+		double cos = (endpoint.x - startpoint.x) / calculateDistance();
 		return cos;
 	}
 
-	public double countDistance() {
-		double Distance = Math.sqrt(Math.pow((startpoint.x - endpoint.x), 2) + Math.pow((startpoint.y - endpoint.y), 2));
-		return Distance;
+	public double calculateDistance() {
+		double distance = Math.sqrt(Math.pow((startpoint.x - endpoint.x), 2) + Math.pow((startpoint.y - endpoint.y), 2));
+		return distance;
 	}
 }

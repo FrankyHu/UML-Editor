@@ -19,7 +19,7 @@ public class AssociationButton extends JButton implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    EditorController.currentMode = EditorController.associationLineMode;
+		EditorController.currentMode = EditorController.associationLineMode;
 	    EditorController.toolBar.initializeIcon();
 	    this.setIcon(new ImageIcon("./image/association_down.jpg"));
 	}

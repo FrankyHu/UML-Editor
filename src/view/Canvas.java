@@ -22,7 +22,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	    this.addMouseListener(this);
 	    this.addMouseMotionListener(this);
 	    this.setBackground(Color.white);
-	    this.setPreferredSize(new Dimension(700, 600));
+	    this.setPreferredSize(new Dimension(924, 660));
 	}
 
 	public void mouseClicked(MouseEvent e) {

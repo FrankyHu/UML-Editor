@@ -20,7 +20,6 @@ public class EditorController {
 	public int classCounter = 0;
 	public int useCaseCounter = 0;
 	public int compositeCounter = 0;
-	public int lineCounter = 0;
 	
 	private static EditorController _instance = null;
 	
@@ -52,10 +51,10 @@ public class EditorController {
 	    toolBar.selectButton.actionPerformed(null); // Make select mode as default
 	    
 	    Container content = mainFrame.getContentPane();
-	    
 	    content.setBackground(Color.white);
 	    content.add(toolBar,BorderLayout.WEST);
 	    content.add(canvas,BorderLayout.EAST);
+	    
 	    mainFrame.setJMenuBar(menu);
 	    mainFrame.setVisible(true);
 	}
@@ -82,7 +81,6 @@ public class EditorController {
 	    int depth = 0;
 	    for (int i = 0; i < EditorController.getInstance().graphicArray.size(); i++) {
 	    	Graphic temp = ((Graphic) EditorController.getInstance().graphicArray.get(i));
-	    	System.out.println("Now at: " + i);
 	    	if (temp.isSelected(e, width, height)) {
 	    		if (depth <= temp.depth) {
 	    			depth = temp.depth;
@@ -144,8 +142,6 @@ public class EditorController {
 
 		if (ungroupArray.size() == 1) { 
 			for (int j = 0; j < ((CompositeObject) ungroupArray.get(0)).groupArray.size(); j++) {
-				// System.out.print("元件編號 : " + j);
-				// System.out.println(" 型別 = " + ((Graphic) ((CompositeObject) ungrouplist.get(0)).groupArray.get(j)).getClass().getName());
 				((Graphic) ((CompositeObject) ungroupArray.get(0)).groupArray.get(j)).isHighlighted = false;
 				EditorController.getInstance().graphicArray.add(((CompositeObject) ungroupArray.get(0)).groupArray.get(j));
 			}

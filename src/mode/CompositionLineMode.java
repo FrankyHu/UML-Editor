@@ -17,7 +17,7 @@ public class CompositionLineMode extends LineMode{
 	    endGraphic = getTargetGraphic(endPoint);
 	    if ((endGraphic != null) && (startPort != null) && (endGraphic != startGrapic)) {
 	    	endPort = endGraphic.getPort(endPoint);
-	    	EditorController.getInstance().addGraphic(new CompositionLine(EditorController.getInstance().lineCounter, startPort, endPort),e);
+	    	EditorController.getInstance().addGraphic(new CompositionLine(startPort, endPort),e);
 	    }
 	    EditorController.mainFrame.repaint();
 	}
@@ -29,9 +29,10 @@ public class CompositionLineMode extends LineMode{
 	    	endPort.x = endPoint.getX();
 	    	endPort.y = endPoint.getY();
 	    	EditorController.getInstance().graphicArray.remove(tempLine);
-	    	tempLine = new CompositionLine(EditorController.getInstance().lineCounter, startPort, endPort);
+	    	tempLine = new CompositionLine(startPort, endPort);
 	    	EditorController.getInstance().addGraphic(tempLine, e);
 	    	EditorController.mainFrame.repaint();
 	    }
 	}
+	
 }

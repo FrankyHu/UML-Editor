@@ -5,15 +5,15 @@ import java.awt.event.*;
 
 abstract public class Graphic {
 	int PortNum = 4; //Set port number
-	public boolean isHighlighted = false;
+	public int width = 0;
+	public int height = 0;
 	public int depth = 1;
-	public int graphicID;
+	public int graphicID = 0;
 	public Point graphicPoint;
 	public String graphicName;
 	public ConnectionPort portList[] = new ConnectionPort [5];
-	public int width;
-	public int height;
-
+	public boolean isHighlighted = false;
+	
 	public Graphic() {
 	
 	}
